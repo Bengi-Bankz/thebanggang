@@ -7,6 +7,8 @@
   export let height: number = 250;
   export let fps: number = 24;
   export let scale: number = 3;
+  export let anchor: { x: number; y: number } = { x: 0, y: 0 };
+  export let oncomplete: (() => void) | undefined = undefined;
   export let animateX: { start: number; end: number; duration: number; pause?: number; oncomplete?: () => void } | undefined = undefined;
 
   import { Sprite } from 'pixi-svelte';
@@ -37,9 +39,13 @@
 
   function pauseAtEnd() {
     stopAnimation();
-    pauseTimeout = setTimeout(() => {
-      animateBidirectional();
-    }, 180000); // 3 minutes
+    if (oncomplete) {
+      oncomplete();
+    } else {
+      pauseTimeout = setTimeout(() => {
+        animateBidirectional();
+      }, 180000); // 3 minutes
+    }
   }
 
   function stopAnimation() {
@@ -57,28 +63,31 @@
     stopAnimation();
     animationStarted = true;
     currentFrameIndex = 0;
-    animatedX = animateX.start;
-    const start = performance.now();
-    function step(now: number) {
-      const elapsed = now - start;
-      if (elapsed < animateX.duration) {
-        animatedX = animateX.start + ((animateX.end - animateX.start) * (elapsed / animateX.duration));
-        const progress = elapsed / animateX.duration;
-        currentFrameIndex = Math.floor(progress * (frameKeys.length - 1));
-        requestAnimationFrame(step);
-      } else {
-        animatedX = animateX.end;
-        currentFrameIndex = frameKeys.length - 1;
-        if (animateX.pause) {
-          setTimeout(() => {
-            if (animateX.oncomplete) animateX.oncomplete();
-          }, animateX.pause);
+    if (animateX) {
+      animatedX = animateX.start;
+      const start = performance.now();
+      function step(now: number) {
+        if (!animateX) return;
+        const elapsed = now - start;
+        if (elapsed < animateX.duration) {
+          animatedX = animateX.start + ((animateX.end - animateX.start) * (elapsed / animateX.duration));
+          const progress = elapsed / animateX.duration;
+          currentFrameIndex = Math.floor(progress * (frameKeys.length - 1));
+          requestAnimationFrame(step);
         } else {
-          if (animateX.oncomplete) animateX.oncomplete();
+          animatedX = animateX.end;
+          currentFrameIndex = frameKeys.length - 1;
+          if (animateX.pause) {
+            setTimeout(() => {
+              if (animateX.oncomplete) animateX.oncomplete();
+            }, animateX.pause);
+          } else {
+            if (animateX.oncomplete) animateX.oncomplete();
+          }
         }
       }
+      requestAnimationFrame(step);
     }
-    requestAnimationFrame(step);
   }
 
   onMount(() => {
@@ -110,6 +119,7 @@
     width={width}
     height={height}
     scale={scale}
+    anchor={anchor}
   />
 {:else}
   <div>No frame to display</div>

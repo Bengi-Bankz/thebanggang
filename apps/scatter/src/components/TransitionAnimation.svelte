@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { SpineProvider, SpineTrack } from 'pixi-svelte';
-	import { getContext } from '../game/context';
 	import FramedDisplay from '../framedisplay.svelte';
-	import { writable } from 'svelte/store';
+	import { getContext } from '../game/context';
 
 	type Props = {
 		oncomplete: () => void;
@@ -11,69 +9,39 @@
 	const props: Props = $props();
 	const context = getContext();
 
-	const spriteX = writable(-300);
-	let animationActive = true;
-
-	function animateAcross() {
-		const endX = context.stateLayoutDerived.canvasSizes().width * 0.5 - 137;
-		const duration = 1200;
-		const start = performance.now();
-		function step(now: number) {
-			const elapsed = now - start;
-			if (elapsed < duration) {
-				spriteX.set(-300 + ((endX + 300) * (elapsed / duration)));
-				requestAnimationFrame(step);
-			} else {
-				spriteX.set(endX);
-				setTimeout(() => {
-					animationActive = false;
-					props.oncomplete();
-				}, 800);
-			}
-		}
-		requestAnimationFrame(step);
-	}
-
-	$effect(() => {
-		if (animationActive) animateAcross();
-	});
+	// Calculate dynamic dimensions based on canvas size
+	const canvasSize = context.stateLayoutDerived.canvasSizes();
+	const DISPLAY_WIDTH_RATIO = 0.65; // 65% of canvas width
+	const ASPECT_RATIO = 500 / 290; // Original aspect ratio
+	
+	const displayWidth = canvasSize.width * DISPLAY_WIDTH_RATIO;
+	const displayHeight = displayWidth / ASPECT_RATIO;
+	
+	const centerX = canvasSize.width * 0.5;
+	const centerY = canvasSize.height * 0.5;
 </script>
-
-<SpineProvider
-	key="transition"
-	x={context.stateLayoutDerived.canvasSizes().width * 0.5}
-	y={context.stateLayoutDerived.canvasSizes().height * 0.5}
-	height={context.stateLayoutDerived.canvasSizes().height * 1.7}
->
-	<SpineTrack
-		trackIndex={0}
-		animationName={'animation'}
-		listener={{
-			complete: props.oncomplete,
-		}}
-	/>
-</SpineProvider>
 
 <FramedDisplay
 	frameKeys={[
-		"frame_0001.png", "frame_0002.png", "frame_0003.png", "frame_0004.png", "frame_0005.png", 
-		"frame_0006.png", "frame_0007.png", "frame_0008.png", "frame_0009.png", "frame_0010.png",
-		"frame_0011.png", "frame_0012.png", "frame_0013.png", "frame_0014.png", "frame_0015.png", 
-		"frame_0016.png", "frame_0017.png", "frame_0018.png", "frame_0019.png", "frame_0020.png",
-		"frame_0021.png", "frame_0022.png", "frame_0023.png", "frame_0024.png", "frame_0025.png", 
-		"frame_0026.png", "frame_0027.png", "frame_0028.png", "frame_0029.png", "frame_0030.png",
-		"frame_0031.png", "frame_0032.png", "frame_0033.png", "frame_0034.png", "frame_0035.png", 
-		"frame_0036.png", "frame_0037.png", "frame_0038.png", "frame_0039.png", "frame_0040.png",
-		"frame_0041.png", "frame_0042.png", "frame_0043.png", "frame_0044.png", "frame_0045.png", 
-		"frame_0046.png", "frame_0047.png", "frame_0048.png", "frame_0049.png", "frame_0050.png",
-		"frame_0051.png", "frame_0052.png", "frame_0053.png", "frame_0054.png", "frame_0055.png", 
-		"frame_0056.png", "frame_0057.png", "frame_0058.png", "frame_0059.png", "frame_0060.png",
-		"frame_0061.png"
+		"frame_0001 (1).png", "frame_0001 (2).png", "frame_0001 (3).png", "frame_0001 (4).png", "frame_0001 (5).png", 
+		"frame_0001 (6).png", "frame_0001 (7).png", "frame_0001 (8).png", "frame_0001 (9).png", "frame_0001 (10).png",
+		"frame_0001 (11).png", "frame_0001 (12).png", "frame_0001 (13).png", "frame_0001 (14).png", "frame_0001 (15).png", 
+		"frame_0001 (16).png", "frame_0001 (17).png", "frame_0001 (18).png", "frame_0001 (19).png", "frame_0001 (20).png",
+		"frame_0001 (21).png", "frame_0001 (22).png", "frame_0001 (23).png", "frame_0001 (24).png", "frame_0001 (25).png", 
+		"frame_0001 (26).png", "frame_0001 (27).png", "frame_0001 (28).png", "frame_0001 (29).png", "frame_0001 (30).png",
+		"frame_0001 (31).png", "frame_0001 (32).png", "frame_0001 (33).png", "frame_0001 (34).png", "frame_0001 (35).png", 
+		"frame_0001 (36).png", "frame_0001 (37).png", "frame_0001 (38).png", "frame_0001 (39).png", "frame_0001 (40).png",
+		"frame_0001 (41).png", "frame_0001 (42).png", "frame_0001 (43).png", "frame_0001 (44).png", "frame_0001 (45).png", 
+		"frame_0001 (46).png", "frame_0001 (47).png", "frame_0001 (48).png", "frame_0001 (49).png", "frame_0001 (50).png",
+		"frame_0001 (51).png", "frame_0001 (52).png", "frame_0001 (53).png", "frame_0001 (54).png", "frame_0001 (55).png", 
+		"frame_0001 (56).png", "frame_0001 (57).png", "frame_0001 (58).png", "frame_0001 (59).png", "frame_0001 (60).png",
+		"frame_0001 (61).png"
 	]}
-	x={context.stateLayoutDerived.canvasSizes().width * 0.5 - 137}
-	y={context.stateLayoutDerived.canvasSizes().height * 0.5 - 144}
-	width={500}
-	height={290}	
+	x={centerX}
+	y={centerY}
+	width={displayWidth}
+	height={displayHeight}
 	fps={24}
-	scale={2}
+	scale={1}
+	oncomplete={props.oncomplete}
 />

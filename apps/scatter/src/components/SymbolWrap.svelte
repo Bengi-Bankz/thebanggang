@@ -24,21 +24,13 @@
 	const bottom = SYMBOL_SIZE * BOARD_DIMENSIONS.y;
 	const inFrame = $derived(props.y >= top && props.y <= bottom);
 
-	const scale = tweened(1, { duration: 300 });
+	const scale = tweened(1, { duration: 50 });
 	let pulseInterval: number;
 
 	$effect(() => {
-		if (props.state === 'win') {
-			let direction = 1;
-			pulseInterval = setInterval(() => {
-				const target = direction === 1 ? 1.2 : 1;
-				scale.set(target);
-				direction = -direction;
-			}, 300);
-		} else {
-			if (pulseInterval) clearInterval(pulseInterval);
-			scale.set(1);
-		}
+		// Pulse animation disabled for now
+		if (pulseInterval) clearInterval(pulseInterval);
+		scale.set(1);
 
 		return () => {
 			if (pulseInterval) clearInterval(pulseInterval);

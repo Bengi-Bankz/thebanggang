@@ -23,7 +23,7 @@ onMount(() => {
         clearInterval(interval);
         setTimeout(() => {
           oncomplete?.();
-        }, 4000);
+        }, 100);
       }
     }
   }, 1000 / frameRate);

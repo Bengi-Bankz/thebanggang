@@ -55,49 +55,26 @@
 
 				<FreeSpinAnimation>
 					{#snippet children({ sizes })}
-						{#if isBigWin}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 2.2}
-								height={156 * 2.2}
-								key="freespins_{stateUrlDerived.lang()}.png"
-							/>
-						{:else}
-							<Sprite
-								anchor={{ x: 0.5, y: 1.2 }}
-								width={500 * 4.5}
-								height={80 * 4.5}
-								key="winsmall_{stateUrlDerived.lang()}.png"
-							/>
-						{/if}
-
-						<SpineProvider key="fsOutroNumber" width={sizes.width * 0.4}>
-							<SpineTrack
-								trackIndex={0}
-								{animationName}
-								loop={animationName === 'idle'}
-								listener={{
-									complete: () => (animationName = 'idle'),
-								}}
-							/>
-							<SpineSlot slotName="slot_number">
-								<ResponsiveBitmapText
-									anchor={0.5}
-									style={{
-										fontFamily: 'MoneyFont3',
-										fontSize: sizes.width * 0.15,
-									}}
-									text={bookEventAmountToCurrencyString(countUpAmount)}
-									maxWidth={sizes.width}
-								/>
-							</SpineSlot>
-						</SpineProvider>
-
+						<!-- Grenade mug shot sprite with sign -->
 						<Sprite
-							anchor={{ x: 0.5, y: isBigWin ? -3.2 : -2 }}
-							width={177 * (isBigWin ? 2.2 : 3)}
-							height={42 * (isBigWin ? 2.2 : 3)}
-							key="totalwin.png"
+							anchor={{ x: 0.5, y: 0.5 }}
+							width={sizes.width * 0.95}
+							height={sizes.width * 0.95}
+							key="grenadeMugShot"
+						/>
+
+						<!-- Winning amount text on the sign (same positioning as intro) -->
+						<ResponsiveBitmapText
+							anchor={{ x: 0.5, y: 0.5 }}
+							x={sizes.width * 0.0}
+							y={sizes.width * 0.206}
+							style={{
+								fontFamily: 'MoneyFont3',
+								fontSize: sizes.width * 0.12,
+								fontWeight: 'bold',
+							}}
+							text={bookEventAmountToCurrencyString(countUpAmount)}
+							maxWidth={sizes.width * 0.5}
 						/>
 					{/snippet}
 				</FreeSpinAnimation>
