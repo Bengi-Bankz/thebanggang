@@ -157,110 +157,62 @@ const wStatic = { type: 'sprite', assetKey: 'w.png', sizeRatios: { width: 1.12, 
 
 const m2Static = {
 	type: 'sprite',
-	assetKey: 'm1_2x.png',
+	assetKey: 'm',
 	sizeRatios: { width: 0.88, height: 0.88 },
 };
 const m4Static = {
 	type: 'sprite',
-	assetKey: 'm1_4x.png',
+	assetKey: 'm',
 	sizeRatios: { width: 0.88, height: 0.88 },
 };
-const m5Static = { type: 'sprite', assetKey: 'm2_5x.png', sizeRatios: { width: 1, height: 1 } };
-const m7Static = { type: 'sprite', assetKey: 'm2_7x.png', sizeRatios: { width: 1, height: 1 } };
-const m10Static = { type: 'sprite', assetKey: 'm3_10x.png', sizeRatios: { width: 1, height: 1 } };
+const m5Static = { type: 'sprite', assetKey: 'm', sizeRatios: { width: 1, height: 1 } };
+const m7Static = { type: 'sprite', assetKey: 'm', sizeRatios: { width: 1, height: 1 } };
+const m10Static = { type: 'sprite', assetKey: 'm', sizeRatios: { width: 1, height: 1 } };
 
 const wSizeRatios = { width: 1.5 * 0.9, height: SPECIAL_SYMBOL_SIZE * 1.15 };
 const sSizeRatios = { width: 1.2, height: SPECIAL_SYMBOL_SIZE * 1.4 };
 
 const backgroundLowStatic = {
-	type: 'spine',
-	assetKey: 'M',
-	animationName: 'low_multiplier_static',
+	type: 'sprite',
+	assetKey: 'm',
 	sizeRatios: { width: M_SIZE, height: M_SIZE },
 };
 const backgroundMidStatic = {
-	type: 'spine',
-	assetKey: 'M',
-	animationName: 'mid_multiplier_static',
+	type: 'sprite',
+	assetKey: 'm',
 	sizeRatios: { width: M_SIZE, height: M_SIZE },
 };
 const backgroundHighStatic = {
-	type: 'spine',
-	assetKey: 'M',
-	animationName: 'high_multiplier_static',
+	type: 'sprite',
+	assetKey: 'm',
 	sizeRatios: { width: M_SIZE, height: M_SIZE },
 };
 
 const backgroundLow = {
 	explosion,
-	win: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'low_multiplier_pay',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	win: backgroundLowStatic,
 	postWinStatic: backgroundLowStatic,
 	static: backgroundLowStatic,
-	spin: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'low_multiplier_static',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
-	land: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'low_multiplier_land',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	spin: backgroundLowStatic,
+	land: backgroundLowStatic,
 };
 
 const backgroundMid = {
 	explosion,
-	win: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'mid_multiplier_pay',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	win: backgroundMidStatic,
 	postWinStatic: backgroundMidStatic,
 	static: backgroundMidStatic,
-	spin: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'mid_multiplier_static',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
-	land: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'mid_multiplier_land',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	spin: backgroundMidStatic,
+	land: backgroundMidStatic,
 };
 
 const backgroundHigh = {
 	explosion,
-	win: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'high_multiplier_pay',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	win: backgroundHighStatic,
 	postWinStatic: backgroundHighStatic,
 	static: backgroundHighStatic,
-	spin: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'high_multiplier_static',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
-	land: {
-		type: 'spine',
-		assetKey: 'M',
-		animationName: 'high_multiplier_land',
-		sizeRatios: { width: M_SIZE, height: M_SIZE },
-	},
+	spin: backgroundHighStatic,
+	land: backgroundHighStatic,
 };
 
 export const SYMBOL_INFO_MAP = {
@@ -422,108 +374,48 @@ export const SYMBOL_INFO_MAP = {
 		postWinStatic: m2Static,
 		static: m2Static,
 		spin: m2Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '2x',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '2x_land',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m2Static,
+		land: m2Static,
 	},
 	M_4: {
 		explosion,
 		postWinStatic: m4Static,
 		static: m4Static,
 		spin: m4Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '4x',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '4x_land',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m4Static,
+		land: m4Static,
 	},
 	M_5: {
 		explosion,
 		postWinStatic: m5Static,
 		static: m5Static,
 		spin: m5Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '5x',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '5x_land',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m5Static,
+		land: m5Static,
 	},
 	M_7: {
 		explosion,
 		postWinStatic: m7Static,
 		static: m7Static,
 		spin: m7Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '7x',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '7x_land',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m7Static,
+		land: m7Static,
 	},
 	M_10: {
 		explosion,
 		postWinStatic: m10Static,
 		static: m10Static,
 		spin: m10Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '10x',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '10x_land',
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m10Static,
+		land: m10Static,
 	},
 	M_15: {
 		explosion,
-		postWinStatic: m10Static, // Reuse m10Static for debug
+		postWinStatic: m10Static,
 		static: m10Static,
 		spin: m10Static,
-		win: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '10x', // Use same animation as 10x
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
-		land: {
-			type: 'spine',
-			assetKey: 'M',
-			animationName: '10x_land', // Use same animation as 10x
-			sizeRatios: { width: M_SIZE, height: M_SIZE },
-		},
+		win: m10Static,
+		land: m10Static,
 	},
 	M_TAKEN_2: backgroundLow,
 	M_TAKEN_4: backgroundLow,

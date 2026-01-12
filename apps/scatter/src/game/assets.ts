@@ -377,6 +377,14 @@ export default {
 			scale: 2,
 		},
 	},
+	grenadeRobber: {
+		type: 'sprite',
+		src: new URL('../../static/assets/sprites/duel/grenadeRobber.png', import.meta.url).href,
+	},
+	donutCop: {
+		type: 'sprite',
+		src: new URL('../../static/assets/sprites/duel/donutCop.png', import.meta.url).href,
+	},
 	symbolsStatic: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/symbolsStatic/symbolsStatic.json', import.meta.url).href,
@@ -395,5 +403,9 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
 		preload: true,
+	},
+	m: {
+		type: 'sprite',
+		src: new URL('../../static/assets/sprites/multi/m.png', import.meta.url).href,
 	},
 } as const;
