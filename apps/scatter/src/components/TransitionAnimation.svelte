@@ -42,6 +42,6 @@
 	width={displayWidth}
 	height={displayHeight}
 	fps={24}
-	scale={1}
+	scale={3}
 	oncomplete={props.oncomplete}
 />

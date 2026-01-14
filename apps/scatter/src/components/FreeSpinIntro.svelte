@@ -44,19 +44,19 @@
 
 	<FreeSpinAnimation>
 		{#snippet children({ sizes })}
-				<!-- Grenade mug shot sprite with sign -->
+				<!-- Grenade mug shot sprite with sign - sized to fill board -->
 				<Sprite
-					anchor={{ x: 0.5, y: 0.5 }}
-					width={sizes.width * 0.95}
-					height={sizes.width * 0.95}
+					anchor={{ x: 0, y: 0 }}
+					width={sizes.width}
+					height={sizes.height}
 					key="grenadeMugShot"
 				/>
 
 				<!-- Text on the sign (centered horizontally, positioned on sign vertically) -->
 				<BitmapText
 					anchor={{ x: 0.5, y: 0.5 }}
-					x={sizes.width * 0.0}
-					y={sizes.width * 0.206}
+					x={sizes.width * 0.5}
+					y={sizes.height * 0.5 + sizes.width * 0.206}
 					text={freeSpinsFromEvent}
 					style={{
 						fontFamily: 'MoneyFont3',

@@ -8,7 +8,7 @@
 </script>
 
 <script lang="ts">
-	import { Sprite, SpineProvider, SpineTrack, SpineSlot } from 'pixi-svelte';
+	import { Sprite, BitmapText } from 'pixi-svelte';
 	import { FadeContainer, WinCountUpProvider, ResponsiveBitmapText } from 'components-pixi';
 	import { bookEventAmountToCurrencyString } from 'utils-shared/amount';
 	import { waitForResolve } from 'utils-shared/wait';
@@ -55,19 +55,19 @@
 
 				<FreeSpinAnimation>
 					{#snippet children({ sizes })}
-						<!-- Grenade mug shot sprite with sign -->
+						<!-- Grenade mug shot sprite with sign - sized to fill board -->
 						<Sprite
-							anchor={{ x: 0.5, y: 0.5 }}
-							width={sizes.width * 0.95}
-							height={sizes.width * 0.95}
+							anchor={{ x: 0, y: 0 }}
+							width={sizes.width}
+							height={sizes.height}
 							key="grenadeMugShot"
 						/>
 
 						<!-- Winning amount text on the sign (same positioning as intro) -->
 						<ResponsiveBitmapText
 							anchor={{ x: 0.5, y: 0.5 }}
-							x={sizes.width * 0.0}
-							y={sizes.width * 0.206}
+							x={sizes.width * 0.5}
+							y={sizes.height * 0.5 + sizes.width * 0.206}
 							style={{
 								fontFamily: 'MoneyFont3',
 								fontSize: sizes.width * 0.12,

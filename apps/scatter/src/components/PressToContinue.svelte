@@ -28,26 +28,8 @@
 	<!-- Example: Add a FrameDisplay animation below the text -->
 
 	<!-- Third FrameDisplay: Clinton frames, left of Lincoln -->
-	<FrameDisplay
-		frameKeys={["clinton0","clinton1","clinton2","clinton3","clinton4","clinton5","clinton6","clinton7","clinton8"]}
-		fps={12}
-		x={context.stateLayoutDerived.mainLayout().width * 0.5 - 450}
-		y={context.stateLayoutDerived.mainLayout().height - 400}
-		width={400}
-		height={500}
-		scale={2}
-	/>
 
-	<!-- Second FrameDisplay beside the first -->
-	<FrameDisplay
-		frameKeys={["trump0","trump1","trump2","trump3","trump4","trump5","trump6","trump7","trump8","trump9"]}
-		fps={12}
-		x={context.stateLayoutDerived.mainLayout().width * 0.5 + 50}
-		y={context.stateLayoutDerived.mainLayout().height - 400}
-		width={400}
-		height={500}
-		scale={2}
-	/>
+
 </MainContainer>
 <OnHotkey hotkey="Space" onpress={() => props.onpress()} />
 <OnPressFullScreen onpress={() => props.onpress()} />

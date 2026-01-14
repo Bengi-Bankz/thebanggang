@@ -59,6 +59,11 @@ export default {
 		},
 		preload: true,
 	},
+	loaderSprite: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/loader/loader.webp.json', import.meta.url).href,
+		preload: true,
+	},
 	pressToContinueText: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url)

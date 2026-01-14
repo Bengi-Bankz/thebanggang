@@ -6,17 +6,19 @@
 	import { stateBetDerived } from 'state-shared';
 	
 	import { getContext } from '../game/context';
+	import RevolverCylinder from './RevolverCylinder.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
 		x?: number;
 		y?: number;
 		multiplierValue: number;
+		bulletCount?: number; // Number of bullets/duels in this round (default 1)
 		autoStart?: boolean;
 		onComplete?: () => void;
 	};
 
-	type BombPhase = 'hidden' | 'landing' | 'static' | 'scaling' | 'tickingUp' | 'exploding' | 'complete';
+	type BombPhase = 'hidden' | 'revolver-loading' | 'revolver-ready' | 'dueling' | 'exploding' | 'complete';
 
 	type DuelCharacter = {
 		id: 'grenadeRobber' | 'donutCop';
@@ -32,10 +34,12 @@
 	// State management
 	let phase = $state<BombPhase>('hidden');
 	let animationName = $state('static');
-	let showMultiplierText = $state(false);
-	let currentTickValue = $state(1);
 	let assetError = false;
 	let assetLoaded = true;
+	
+	// Revolver state
+	let revolverComponent: any;
+	const bulletCount = $derived(props.bulletCount ?? 1);
 	
 	// Duel state
 	let showDuel = $state(false);
@@ -46,12 +50,10 @@
 	
 	// Animation tweens
 	const scale = new Tween(0);
-	const textScale = new Tween(0);
-	const rotation = new Tween(0);
 	
-	// Duel tweens
-	const duelGrenadeX = new Tween(-SYMBOL_SIZE * 1.5);
-	const duelDonutX = new Tween(SYMBOL_SIZE * 1.5);
+	// Duel tweens - centered on grid
+	const duelGrenadeX = new Tween(-SYMBOL_SIZE * 0.8);
+	const duelDonutX = new Tween(SYMBOL_SIZE * 0.8);
 	const duelGrenadeScale = new Tween(1);
 	const duelDonutScale = new Tween(1);
 	
@@ -62,72 +64,40 @@
 		return available[Math.floor(Math.random() * available.length)];
 	};
 	
-	// Animation intervals
-	let tickUpInterval: ReturnType<typeof setInterval> | null = null;
-	
 	// Configuration
-	const TICK_SPEED = 500; // ms between ticks during count up (slowed down more)
-	
-	// Get current sprite based on phase - ALL USE THE SAME STATIC SYMBOL
-	// For debugging, use the 'trashcan' sprite key
-	const currentSprite = $derived(() => {
-		return 'm';
-	});
+	const TICK_SPEED = 500;
 	
 	// Auto-start if requested
 	onMount(() => {
 		if (props.autoStart) {
 			startBombSequence();
 		}
-		
-		// Cleanup on unmount
-		return () => {
-			if (tickUpInterval) clearInterval(tickUpInterval);
-		};
 	});
 	
 	const startBombSequence = async () => {
-		console.log(`🎯 Starting unified bomb sequence for ${props.multiplierValue}X`);
-		await playDuelAnimation();
+		console.log(`🎯 Starting revolver sequence for ${props.multiplierValue}X with ${bulletCount} bullets`);
+		
+		// Phase 1: Load revolver
+		phase = 'revolver-loading';
+		await revolverComponent?.playLoadAnimation();
+		
+		// Phase 2: Run duels for each bullet
+		phase = 'revolver-ready';
+		for (let i = 0; i < bulletCount; i++) {
+			console.log(`🔫 Duel ${i + 1}/${bulletCount}`);
+			await playDuelAnimation();
+			await revolverComponent?.fireBullet();
+			await waitForTimeout(300 / stateBetDerived.timeScale());
+		}
+		
+		// Phase 3: Explosion
 		await playExplodingAnimation();
 		phase = 'complete';
-		console.log(`✅ Unified bomb sequence complete for ${props.multiplierValue}X`);
+		console.log(`✅ Revolver sequence complete for ${props.multiplierValue}X`);
 		props.onComplete?.();
 	};
 	
-	const playLandingAnimation = async () => {
-		phase = 'landing';
-		
-		// Play scatter land sound - use the scatter land sound mapping
-		const soundMap: { [key: number]: any } = {
-			2: 'sfx_scatter_stop_1',
-			4: 'sfx_scatter_stop_2', 
-			5: 'sfx_scatter_stop_3',
-			7: 'sfx_scatter_stop_4',
-			10: 'sfx_scatter_stop_5',
-		};
-		const soundKey = soundMap[props.multiplierValue] || 'sfx_scatter_stop_1';
-		context.eventEmitter?.broadcast({ type: 'soundOnce', name: soundKey as any });
-		
-		// Simple scale bounce animation for landing (no frame animation)
-		await scale.set(1.2, { duration: 400 / stateBetDerived.timeScale() });
-		await scale.set(1.0, { duration: 300 / stateBetDerived.timeScale() });
-	};
-	
-	const playStaticPhase = async () => {
-		phase = 'static';
-		// Brief pause - multiplier value still HIDDEN, showing static symbol
-		await waitForTimeout(300 / stateBetDerived.timeScale());
-	};
-	
-	const playScalingPhase = async () => {
-		phase = 'scaling';
-		// Scale up to 2x as requested
-		await scale.set(2.0, { duration: 500 / stateBetDerived.timeScale() });
-	};
-	
 	const playDuelAnimation = async () => {
-		phase = 'tickingUp';
 		console.log('🎯 Starting duel animation');
 		
 		// Create character objects
@@ -140,14 +110,14 @@
 				id: 'grenadeRobber',
 				multiplier: assignToLeft ? props.multiplierValue : fakeMultiplier,
 				spriteKey: 'grenadeRobber',
-				x: -SYMBOL_SIZE * 1.5,
+				x: -SYMBOL_SIZE * 0.8,
 				isWinner: assignToLeft,
 			},
 			{
 				id: 'donutCop',
 				multiplier: assignToLeft ? fakeMultiplier : props.multiplierValue,
 				spriteKey: 'donutCop',
-				x: SYMBOL_SIZE * 1.5,
+				x: SYMBOL_SIZE * 0.8,
 				isWinner: !assignToLeft,
 			},
 		];
@@ -166,13 +136,14 @@
 		
 		// Show duel
 		showDuel = true;
+		duelWinnerRevealed = false;
 		
-		// Intro - characters slide in
+		// Intro - characters slide in from sides (centered on grid)
 		duelGrenadeX.set(-SYMBOL_SIZE * 0.8, { duration: 400 / stateBetDerived.timeScale() });
 		duelDonutX.set(SYMBOL_SIZE * 0.8, { duration: 400 / stateBetDerived.timeScale() });
 		await waitForTimeout(600 / stateBetDerived.timeScale());
 		
-		// Dueling - 3 rounds of shooting (alternate based on random shoot order)
+		// Dueling - 3 rounds of shooting
 		for (let i = 0; i < 3; i++) {
 			const shooter = duelShootOrder[i % 2];
 			const isGrenade = shooter === 'grenadeRobber';
@@ -244,83 +215,66 @@
                         timeScale={stateBetDerived.timeScale()}
                     />
                 </SpineProvider>
-            {:else if phase === 'tickingUp' && showDuel}
-                <!-- Inline Duel Animation -->
-                {#each duelCharacters as character}
-                    <Container
-                        x={character.id === 'grenadeRobber' ? duelGrenadeX.current : duelDonutX.current}
-                        y={0}
-                        scale={character.id === 'grenadeRobber' ? duelGrenadeScale.current : duelDonutScale.current}
-                    >
-                        <Sprite
-                            key={character.spriteKey}
-                            anchor={0.5}
-                            scale={0.7}
-                            x={0}
-                            y={0}
-                        />
-                        <BitmapText
-                            anchor={0.5}
-                            x={0}
-                            y={SYMBOL_SIZE * 0.5}
-                            text={`${character.multiplier}X`}
-                            style={{
-                                fontFamily: 'purple',
-                                fontSize: SYMBOL_SIZE * 0.25,
-                                letterSpacing: -1,
-                            }}
-                        />
-                    </Container>
-                {/each}
+            {:else if phase === 'revolver-loading' || phase === 'revolver-ready'}
+                <!-- Revolver Cylinder -->
+                <RevolverCylinder
+                    bind:this={revolverComponent}
+                    bulletCount={bulletCount}
+                />
 
-                <!-- Winner reveal in center -->
-                {#if duelWinnerRevealed && winningCharacter}
-                    <Container y={0} scale={duelGrenadeScale.current * 1.5}>
-                        <Sprite
-                            key={winningCharacter.spriteKey}
-                            anchor={0.5}
-                            scale={0.9}
-                            x={0}
+                <!-- Duel characters (shown after revolver is ready) -->
+                {#if phase === 'revolver-ready' && showDuel}
+                    {#each duelCharacters as character}
+                        <Container
+                            x={character.id === 'grenadeRobber' ? duelGrenadeX.current : duelDonutX.current}
                             y={0}
-                        />
-                        <BitmapText
-                            anchor={0.5}
-                            x={0}
-                            y={SYMBOL_SIZE * 0.5}
-                            text={`${winningCharacter.multiplier}X`}
-                            style={{
-                                fontFamily: 'purple',
-                                fontSize: SYMBOL_SIZE * 0.35,
-                                letterSpacing: -2,
-                            }}
-                        />
-                    </Container>
-                {/if}
-            {:else}
-                <Container scale={scale.current} rotation={rotation.current}>
-                    <Sprite
-                        key={currentSprite()}
-                        anchor={0.5}
-                        scale={0.8}
-                        x={0}
-                        y={0}
-                    />
-                    {#if showMultiplierText}
-                        <Container scale={textScale.current}>
+                            scale={character.id === 'grenadeRobber' ? duelGrenadeScale.current : duelDonutScale.current}
+                        >
+                            <Sprite
+                                key={character.spriteKey}
+                                anchor={0.5}
+                                scale={0.7}
+                                x={0}
+                                y={0}
+                            />
                             <BitmapText
                                 anchor={0.5}
                                 x={0}
-                                y={0}
-                                text={`${currentTickValue}X`}
+                                y={SYMBOL_SIZE * 0.5}
+                                text={`${character.multiplier}X`}
                                 style={{
                                     fontFamily: 'purple',
-                                    fontSize: SYMBOL_SIZE * 0.3,
+                                    fontSize: SYMBOL_SIZE * 0.25,
+                                    letterSpacing: -1,
+                                }}
+                            />
+                        </Container>
+                    {/each}
+
+                    <!-- Winner reveal in center -->
+                    {#if duelWinnerRevealed && winningCharacter}
+                        <Container y={0} scale={duelGrenadeScale.current * 1.5}>
+                            <Sprite
+                                key={winningCharacter.spriteKey}
+                                anchor={0.5}
+                                scale={0.9}
+                                x={0}
+                                y={0}
+                            />
+                            <BitmapText
+                                anchor={0.5}
+                                x={0}
+                                y={SYMBOL_SIZE * 0.5}
+                                text={`${winningCharacter.multiplier}X`}
+                                style={{
+                                    fontFamily: 'purple',
+                                    fontSize: SYMBOL_SIZE * 0.35,
                                     letterSpacing: -2,
                                 }}
                             />
                         </Container>
                     {/if}
-                </Container>
+                {/if}
             {/if}
         {/if}
     </Container>

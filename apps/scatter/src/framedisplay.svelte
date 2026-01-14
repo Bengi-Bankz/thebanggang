@@ -9,6 +9,7 @@
   export let scale: number = 3;
   export let anchor: { x: number; y: number } = { x: 0, y: 0 };
   export let oncomplete: (() => void) | undefined = undefined;
+  export let loop: boolean = false;
   export let animateX: { start: number; end: number; duration: number; pause?: number; oncomplete?: () => void } | undefined = undefined;
 
   import { Sprite } from 'pixi-svelte';
@@ -41,6 +42,10 @@
     stopAnimation();
     if (oncomplete) {
       oncomplete();
+    } else if (loop) {
+      pauseTimeout = setTimeout(() => {
+        animateBidirectional();
+      }, 0);
     } else {
       pauseTimeout = setTimeout(() => {
         animateBidirectional();

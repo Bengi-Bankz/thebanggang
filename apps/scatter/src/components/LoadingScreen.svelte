@@ -1,6 +1,6 @@
 <script lang="ts">
 import FrameDisplay from '../framedisplay.svelte';
-	import { SpineProvider, SpineTrack, Container, Sprite } from 'pixi-svelte';
+	import { Container, Sprite } from 'pixi-svelte';
 	import { FadeContainer, LoadingProgress } from 'components-pixi';
 	import { MainContainer } from 'components-layout';
 
@@ -16,6 +16,9 @@ import FrameDisplay from '../framedisplay.svelte';
 	const context = getContext();
 
 	let loadingType = $state<'start' | 'transition'>('start');
+
+	// Generate array of frame keys for loader animation
+	const loaderFrames = Array.from({ length: 50 }, (_, i) => `frame_${String(i + 1).padStart(4, '0')}.png`);
 </script>
 
 
@@ -28,9 +31,7 @@ import FrameDisplay from '../framedisplay.svelte';
 			x={context.stateLayoutDerived.mainLayout().width * 0.5}
 			y={context.stateLayoutDerived.mainLayout().height * 0.5}
 		>
-			<SpineProvider key="loader" width={300}>
-				<SpineTrack trackIndex={0} animationName={'title_screen'} loop timeScale={3} />
-			</SpineProvider>
+			<FrameDisplay frameKeys={loaderFrames} width={300} height={300} loop />
 			{#if !context.stateApp.loaded}
 				<LoadingProgress y={250} width={1967 * 0.2} height={346 * 0.2}>
 					{#snippet background(sizes)}
