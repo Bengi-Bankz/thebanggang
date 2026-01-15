@@ -76,6 +76,19 @@
 							text={bookEventAmountToCurrencyString(countUpAmount)}
 							maxWidth={sizes.width * 0.5}
 						/>
+
+						<!-- "YOUR CUT" text below the amount -->
+						<BitmapText
+							anchor={{ x: 0.5, y: 0.5 }}
+							x={sizes.width * 0.5}
+							y={sizes.height * 0.5 + sizes.width * 0.206 + sizes.width * 0.14}
+							text="YOUR CUT"
+							style={{
+								fontFamily: 'MoneyFont3',
+								fontSize: sizes.width * 0.08,
+								fontWeight: 'bold',
+							}}
+						/>
 					{/snippet}
 				</FreeSpinAnimation>
 

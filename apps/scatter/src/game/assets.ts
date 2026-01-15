@@ -417,4 +417,14 @@ export default {
 		type: 'sprite',
 		src: new URL('../../static/assets/sprites/grenade_mug_shot.png', import.meta.url).href,
 	},
+	boardguy: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/boardguy.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.json', import.meta.url).href,
+		preload: true,
+	},
 } as const;

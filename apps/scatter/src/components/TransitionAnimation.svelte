@@ -11,14 +11,14 @@
 
 	// Calculate dynamic dimensions based on canvas size
 	const canvasSize = context.stateLayoutDerived.canvasSizes();
-	const DISPLAY_WIDTH_RATIO = 0.65; // 65% of canvas width
+	const DISPLAY_WIDTH_RATIO = 1.0; // 100% of canvas width (fits in viewport)
 	const ASPECT_RATIO = 500 / 290; // Original aspect ratio
 	
 	const displayWidth = canvasSize.width * DISPLAY_WIDTH_RATIO;
 	const displayHeight = displayWidth / ASPECT_RATIO;
 	
-	const centerX = canvasSize.width * 0.5;
-	const centerY = canvasSize.height * 0.5;
+	const centerX = canvasSize.width * 0.05;
+	const centerY = canvasSize.height * 0.05;
 </script>
 
 <FramedDisplay

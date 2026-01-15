@@ -64,6 +64,32 @@
 						fontWeight: 'bold',
 					}}
 				/>
+
+				<!-- "FREE" text below the number -->
+				<BitmapText
+					anchor={{ x: 0.5, y: 0.5 }}
+					x={sizes.width * 0.5}
+					y={sizes.height * 0.5 + sizes.width * 0.206 + sizes.width * 0.1}
+					text="FREE"
+					style={{
+						fontFamily: 'MoneyFont3',
+						fontSize: sizes.width * 0.08,
+						fontWeight: 'bold',
+					}}
+				/>
+
+				<!-- "SPINS" text below FREE -->
+				<BitmapText
+					anchor={{ x: 0.5, y: 0.5 }}
+					x={sizes.width * 0.5}
+					y={sizes.height * 0.5 + sizes.width * 0.206 + sizes.width * 0.18}
+					text="SPINS"
+					style={{
+						fontFamily: 'MoneyFont3',
+						fontSize: sizes.width * 0.08,
+						fontWeight: 'bold',
+					}}
+				/>
 		{/snippet}
 	</FreeSpinAnimation>
 

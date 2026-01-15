@@ -33,6 +33,8 @@ const dispatch = createEventDispatcher();
 	import FreeSpinCounter from './FreeSpinCounter.svelte';
 	import FreeSpinOutro from './FreeSpinOutro.svelte';
 	import Transition from './Transition.svelte';
+	import CharacterDisplay from './CharacterDisplay.svelte';
+	import VSAnimationDisplay from './VSAnimationDisplay.svelte';
 
 	import { scatterLandedThisRound } from '../stores/scatterLandedThisRound';
 	import { onDestroy } from 'svelte';
@@ -172,7 +174,9 @@ const dispatch = createEventDispatcher();
       <FreeSpinIntro />
       {#if ['desktop', 'landscape'].includes(context.stateLayoutDerived.layoutType())}
         <FreeSpinCounter />
+        <CharacterDisplay />
       {/if}
+      <VSAnimationDisplay />
       <FreeSpinOutro />
       <Transition />
 
