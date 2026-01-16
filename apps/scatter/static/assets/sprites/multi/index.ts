@@ -1,7 +1,7 @@
 import { createAsset } from 'pixi-svelte';
 
 export const m = createAsset({
-	img: new URL('./m.png', import.meta.url).href,
+	img: new URL('./m.webp', import.meta.url).href,
 	preload: true,
 });
 

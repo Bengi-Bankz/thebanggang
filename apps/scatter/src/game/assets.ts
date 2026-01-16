@@ -66,7 +66,7 @@ export default {
 	},
 	pressToContinueText: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.json', import.meta.url)
+		src: new URL('../../assets/sprites/pressToContinueText/MM_pressanywhere.webp.json', import.meta.url)
 			.href,
 		preload: true,
 	},
@@ -134,6 +134,11 @@ export default {
 		type: 'sprites',
 		src: new URL('../../static/assets/sprites/symbols/symbols.webp.json', import.meta.url).href,
 		preload: true,
+	},
+	m: {
+		type: 'spriteWithTexture',
+		src: 'spritesheet',
+		frame: 'm.webp.png',
 	},
 	M: {
 		type: 'spine',
@@ -361,8 +366,15 @@ export default {
 	},
 	spritesheet: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/trump/spritesheet.json', import.meta.url).href,
-	},	spritesheet1: {
+		src: new URL('../../static/assets/sprites/trump/spritesheet.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	mSymbol: {
+		type: 'spriteWithTexture',
+		src: 'spritesheet',
+		frame: 'm.webp.png',
+	},
+	spritesheet1: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/spritesheet1/spritesheet1.webp.json', import.meta.url).href,
 	},
@@ -382,14 +394,6 @@ export default {
 			scale: 2,
 		},
 	},
-	grenadeRobber: {
-		type: 'sprite',
-		src: new URL('../../static/assets/sprites/duel/grenadeRobber.png', import.meta.url).href,
-	},
-	donutCop: {
-		type: 'sprite',
-		src: new URL('../../static/assets/sprites/duel/donutCop.png', import.meta.url).href,
-	},
 	symbolsStatic: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/symbolsStatic/symbolsStatic.webp.json', import.meta.url).href,
@@ -406,16 +410,13 @@ export default {
 
 	progressBar: {
 		type: 'sprites',
-		src: new URL('../../assets/sprites/progressBar/progressBar.json', import.meta.url).href,
+		src: new URL('../../assets/sprites/progressBar/progressBar.webp.json', import.meta.url).href,
 		preload: true,
 	},
-	m: {
-		type: 'sprite',
-		src: new URL('../../static/assets/sprites/multi/m.png', import.meta.url).href,
-	},
+
 	grenadeMugShot: {
 		type: 'sprite',
-		src: new URL('../../static/assets/sprites/grenade_mug_shot.png', import.meta.url).href,
+		src: new URL('../../static/assets/sprites/grenade_mugshot', import.meta.url).href,
 	},
 	boardguy: {
 		type: 'sprites',
@@ -424,7 +425,192 @@ export default {
 	},
 	vsanimation: {
 		type: 'sprites',
-		src: new URL('../../static/assets/sprites/boardguy/vsanimation.json', import.meta.url).href,
+		src: new URL('../../static/assets/sprites/pressToContinueText/MM_pressanywhere.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation2: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation3: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation4: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation5: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation6: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation7: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation8: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation9: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation10: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation11: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation12: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation13: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation14: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation15: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation16: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation17: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation18: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation19: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation20: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation21: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation22: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation23: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation24: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation25: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation26: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation27: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation28: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation29: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation30: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation31: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation32: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation33: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation34: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation35: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	vsanimation36: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/boardguy/vsanimation.png.json', import.meta.url).href,
+		preload: true,
+	},
+	copwins: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/copwins/copwins.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	robberwins: {
+		type: 'sprites',
+		src: new URL('../../static/assets/sprites/robberwins/robberwins.webp.json', import.meta.url).href,
 		preload: true,
 	},
 } as const;

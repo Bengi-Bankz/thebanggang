@@ -1,0 +1,9 @@
+{
+  "image": "grenade_mug_shot.png",
+  "sign": {
+    "x": 0.25,
+    "y": 0.55,
+    "width": 0.5,
+    "height": 0.3
+  }
+}

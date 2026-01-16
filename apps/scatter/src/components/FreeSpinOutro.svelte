@@ -60,7 +60,7 @@
 							anchor={{ x: 0, y: 0 }}
 							width={sizes.width}
 							height={sizes.height}
-							key="grenadeMugShot"
+							key="trashcan"
 						/>
 
 						<!-- Winning amount text on the sign (same positioning as intro) -->

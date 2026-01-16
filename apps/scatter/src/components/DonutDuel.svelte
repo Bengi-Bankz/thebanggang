@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { Tween } from 'svelte/motion';
-	import { Container, Sprite, BitmapText } from 'pixi-svelte';
+	import { Container, BitmapText } from 'pixi-svelte';
 	import { waitForTimeout } from 'utils-shared/wait';
 	import { stateBetDerived } from 'state-shared';
 	
@@ -43,6 +43,33 @@
 	const grenadeMultiplier = winnerIsGrenade ? props.multiplierValue : fakeMultiplier;
 	const copMultiplier = winnerIsGrenade ? fakeMultiplier : props.multiplierValue;
 	
+	// Frame sequences for animations
+	const VS_ANIMATION_FRAMES = [
+		"vs0001 (9).png", "vs0001 (8).png", "vs0001 (7).png", "vs0001 (6).png", "vs0001 (5).png", "vs0001 (4).png",
+		"vs0001 (3).png", "vs0001 (2).png", "vs0001 (1).png", "vs0001 (30).png", "vs0001 (29).png", "vs0001 (28).png",
+		"vs0001 (27).png", "vs0001 (26).png", "vs0001 (25).png", "vs0001 (24).png", "vs0001 (23).png", "vs0001 (22).png",
+		"vs0001 (21).png", "vs0001 (20).png", "vs0001 (19).png", "vs0001 (18).png", "vs0001 (17).png", "vs0001 (16).png",
+		"vs0001 (15).png", "vs0001 (14).png", "vs0001 (13).png", "vs0001 (12).png", "vs0001 (11).png", "vs0001 (10).png"
+	];
+
+	const ROBBERWINS_FRAMES = [
+		"robberwins0001 (9).png", "robberwins0001 (8).png", "robberwins0001 (7).png", "robberwins0001 (6).png", "robberwins0001 (5).png", "robberwins0001 (4).png",
+		"robberwins0001 (36).png", "robberwins0001 (35).png", "robberwins0001 (34).png", "robberwins0001 (33).png", "robberwins0001 (32).png", "robberwins0001 (31).png",
+		"robberwins0001 (30).png", "robberwins0001 (29).png", "robberwins0001 (28).png", "robberwins0001 (27).png", "robberwins0001 (26).png", "robberwins0001 (25).png",
+		"robberwins0001 (24).png", "robberwins0001 (23).png", "robberwins0001 (22).png", "robberwins0001 (21).png", "robberwins0001 (20).png", "robberwins0001 (19).png",
+		"robberwins0001 (18).png", "robberwins0001 (17).png", "robberwins0001 (16).png", "robberwins0001 (15).png", "robberwins0001 (14).png", "robberwins0001 (13).png",
+		"robberwins0001 (12).png", "robberwins0001 (11).png", "robberwins0001 (10).png", "robberwins0001 (3).png", "robberwins0001 (2).png", "robberwins0001 (1).png"
+	];
+
+	const COPWINS_FRAMES = [
+		"copwins0001 (9).png", "copwins0001 (8).png", "copwins0001 (7).png", "copwins0001 (6).png", "copwins0001 (5).png", "copwins0001 (4).png",
+		"copwins0001 (36).png", "copwins0001 (35).png", "copwins0001 (34).png", "copwins0001 (33).png", "copwins0001 (32).png", "copwins0001 (31).png",
+		"copwins0001 (30).png", "copwins0001 (29).png", "copwins0001 (28).png", "copwins0001 (27).png", "copwins0001 (26).png", "copwins0001 (25).png",
+		"copwins0001 (24).png", "copwins0001 (23).png", "copwins0001 (22).png", "copwins0001 (21).png", "copwins0001 (20).png", "copwins0001 (19).png",
+		"copwins0001 (18).png", "copwins0001 (17).png", "copwins0001 (16).png", "copwins0001 (15).png", "copwins0001 (14).png", "copwins0001 (13).png",
+		"copwins0001 (12).png", "copwins0001 (11).png", "copwins0001 (10).png", "copwins0001 (3).png", "copwins0001 (2).png", "copwins0001 (1).png"
+	];
+
 	// Multiplier drop animation
 	const multiplierDropX = new Tween(0);
 	const multiplierDropY = new Tween(0);
@@ -156,16 +183,7 @@
 
 			<!-- VS Animation in center -->
 			<FramedDisplay
-				frameKeys={[
-					"vsanimation1", "vsanimation2", "vsanimation3", "vsanimation4", "vsanimation5", 
-					"vsanimation6", "vsanimation7", "vsanimation8", "vsanimation9", "vsanimation10",
-					"vsanimation11", "vsanimation12", "vsanimation13", "vsanimation14", "vsanimation15", 
-					"vsanimation16", "vsanimation17", "vsanimation18", "vsanimation19", "vsanimation20",
-					"vsanimation21", "vsanimation22", "vsanimation23", "vsanimation24", "vsanimation25", 
-					"vsanimation26", "vsanimation27", "vsanimation28", "vsanimation29", "vsanimation30",
-					"vsanimation31", "vsanimation32", "vsanimation33", "vsanimation34", "vsanimation35", 
-					"vsanimation36"
-				]}
+				frameKeys={VS_ANIMATION_FRAMES}
 				x={-(SYMBOL_SIZE * 0.8)}
 				y={0}
 				width={SYMBOL_SIZE * 1.6}
@@ -195,24 +213,7 @@
 			<Container x={0} y={winningCharacterId === 'donutCop' ? -SYMBOL_SIZE : 0} scale={winAnimationScale.current} alpha={winAnimationAlpha.current}>
 				<!-- Win animation - Full character with winning multiplier overlay -->
 				<FramedDisplay
-					frameKeys={winningCharacterId === 'grenadeRobber'
-						? [
-							"robberwins1", "robberwins2", "robberwins3", "robberwins4", "robberwins5", "robberwins6",
-							"robberwins7", "robberwins8", "robberwins9", "robberwins10", "robberwins11", "robberwins12",
-							"robberwins13", "robberwins14", "robberwins15", "robberwins16", "robberwins17", "robberwins18",
-							"robberwins19", "robberwins20", "robberwins21", "robberwins22", "robberwins23", "robberwins24",
-							"robberwins25", "robberwins26", "robberwins27", "robberwins28", "robberwins29", "robberwins30",
-							"robberwins31", "robberwins32", "robberwins33", "robberwins34", "robberwins35", "robberwins36"
-						]
-						: [
-							"copwins1", "copwins2", "copwins3", "copwins4", "copwins5", "copwins6",
-							"copwins7", "copwins8", "copwins9", "copwins10", "copwins11", "copwins12",
-							"copwins13", "copwins14", "copwins15", "copwins16", "copwins17", "copwins18",
-							"copwins19", "copwins20", "copwins21", "copwins22", "copwins23", "copwins24",
-							"copwins25", "copwins26", "copwins27", "copwins28", "copwins29", "copwins30",
-							"copwins31", "copwins32", "copwins33", "copwins34", "copwins35", "copwins36"
-						]
-					}
+					frameKeys={winningCharacterId === 'grenadeRobber' ? ROBBERWINS_FRAMES : COPWINS_FRAMES}
 					x={-(SYMBOL_SIZE * 1.0)}
 					y={0}
 					width={winningCharacterId === 'donutCop' ? SYMBOL_SIZE * 3.2 : SYMBOL_SIZE * 2.0}

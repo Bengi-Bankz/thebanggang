@@ -179,6 +179,14 @@
 					y={0}
 					tint={0xff6b6b}
 				/>
+				<!-- VS Symbol -->
+				<Sprite
+					key="mSymbol"
+					anchor={0.5}
+					scale={0.3}
+					x={0}
+					y={-SYMBOL_SIZE * 0.3}
+				/>
 				<BitmapText
 					anchor={0.5}
 					x={0}
@@ -204,16 +212,14 @@
 				y={0}
 				tint={0x4ecdc4}
 			/>
-			<BitmapText
-				anchor={0.5}
-				x={0}
-				y={SYMBOL_SIZE * 0.5}
-				text={`${props.realMultiplier}X`}
-				style={{
-					fontFamily: 'purple',
-					fontSize: SYMBOL_SIZE * 0.25,
-					letterSpacing: -1,
-				}}
+				<!-- VS Symbol -->
+				<Sprite
+					key="vsSymbol"
+					anchor={0.5}
+					scale={0.3}
+					x={0}
+					y={-SYMBOL_SIZE * 0.3}
+				/>
 			/>
 		</Container>
 

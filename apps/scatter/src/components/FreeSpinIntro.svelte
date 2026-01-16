@@ -49,7 +49,7 @@
 					anchor={{ x: 0, y: 0 }}
 					width={sizes.width}
 					height={sizes.height}
-					key="grenadeMugShot"
+					key="trashcan"
 				/>
 
 				<!-- Text on the sign (centered horizontally, positioned on sign vertically) -->
