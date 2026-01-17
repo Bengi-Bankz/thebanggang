@@ -7,6 +7,7 @@
 
 	import BaseContent from './BaseContent.svelte';
 	import BaseScrollable from './BaseScrollable.svelte';
+
 	import scatterImg from '../../assets/1.png';
 	import wildImg from '../../assets/2.png';
 	import h1Img from '../../assets/3.png';
@@ -18,6 +19,7 @@
 	import l2Img from '../../assets/9.png';
 	import l3Img from '../../assets/10.png';
 	import l4Img from '../../assets/11.png';
+
 	type Props = {
 		children: Snippet;
 	};
@@ -30,19 +32,120 @@
 		<BaseContent maxWidth="100%">
 			<BaseScrollable type="column">
 				<div class="paytable-modal-outer">
-
 					<div class="paytable-modal-inner" style="position:relative;">
 						<button
 							class="paytable-modal-close-btn"
 							onclick={() => (stateModal.modal = null)}
-							aria-label="Close">&times;</button
-						>
-						{#each [{ name: 'w', src: wildImg, text: `Time Bomb Feature Ticks Multiplier Value incrementally higher until detonation time possible multiplier values are 2x,4x,........,14x,15x.` }, { name: 's', src: scatterImg, text: `4-8 Did Not Inhale Spins\n5-10 Honestly Insane Spins \n6-12 Osama Killer Spins` }, { name: 'h1', src: h1Img, text: `Mr.PRESIDENT\n 8-9 = 4x\n10-11 = 5x\n12+ = 10x` }, { name: 'h2', src: h2Img, text: `Louis V Duffle\n8-9 =3x\n10-11 = 4x\n12+ = 5x` }, { name: 'h3', src: h3Img, text: `AK-47\n8-9 = 1x\n10-11 = 2x\n12+ = 4x` }, { name: 'h3-2', src: h3_2Img, text: `357-Magnum\n8-9 = 1x\n10-11 = 2x\n12+ = 4x` }, { name: 'h4', src: h4Img, text: `Heart Safe \n8-9 = 0.7x\n10-11 = 1.5x\n12+ = 3x` }, { name: 'l1', src: l1Img, text: `Masked Club \n8-9 = .3x\n10-11 = .8x\n12+ = 1x` }, { name: 'l2', src: l2Img, text: `Armored Mini Car\n8-9 = .3x\n10-11 = .8x\n12+ = 1x` }, { name: 'l3', src: l3Img, text: `Dynamite \n8-9 = .3x\n10-11 = .8x\n12+ = 1x` }, { name: 'l4', src: l4Img, text: `IMPEACHED\nMAX WIN 10,000X` }] as symbol}
+							aria-label="Close">
+							&times;
+						</button>
+
+						{#each [
+							{
+								name: 'w',
+								src: wildImg,
+								text: `VS DUEL WILD
+Triggers head-to-head duels.
+Winning side applies random multipliers:
+2x · 3x · 5x · 10x`
+							},
+							{
+								name: 's',
+								src: scatterImg,
+								text: `SCATTER
+4–8 Spins = Street Chaos
+5–10 Spins = Crew Frenzy
+6–12 Spins = Full Heist Mode`
+							},
+
+							/* ===== HIGH SYMBOLS (GRENADE BANK ROBBERS) ===== */
+							{
+								name: 'h1',
+								src: h1Img,
+								text: `THE PIN KING
+8–9 = 4x
+10–11 = 6x
+12+ = 12x`
+							},
+							{
+								name: 'h2',
+								src: h2Img,
+								text: `VAULT POPPER
+8–9 = 3x
+10–11 = 5x
+12+ = 10x`
+							},
+							{
+								name: 'h3',
+								src: h3Img,
+								text: `LOB & GRAB
+8–9 = 2x
+10–11 = 4x
+12+ = 8x`
+							},
+							{
+								name: 'h4',
+								src: h4Img,
+								text: `TELLER SHREDDER
+8–9 = 1.5x
+10–11 = 3x
+12+ = 6x`
+							},
+							{
+								name: 'h5',
+								src: h3_2Img,
+								text: `SMOKE RUNNER
+8–9 = 1x
+10–11 = 2x
+12+ = 5x`
+							},
+
+							/* ===== LOW SYMBOLS ===== */
+							{
+								name: 'l1',
+								src: l1Img,
+								text: `SPADES
+8–9 = 0.3x
+10–11 = 0.8x
+12+ = 1x`
+							},
+							{
+								name: 'l2',
+								src: l2Img,
+								text: `CLUBS
+8–9 = 0.3x
+10–11 = 0.8x
+12+ = 1x`
+							},
+							{
+								name: 'l3',
+								src: l3Img,
+								text: `DIAMONDS
+8–9 = 0.3x
+10–11 = 0.8x
+12+ = 1x`
+							},
+							{
+								name: 'l4',
+								src: l4Img,
+								text: `HEARTS
+8–9 = 0.3x
+10–11 = 0.8x
+12+ = 1x`
+							}
+						] as symbol}
 							<div class="paytable-section">
-								<img class="paytable-symbol-img" src={symbol.src} alt={symbol.name} />
-								<div class="paytable-desc" style="white-space: pre-line">{symbol.text}</div>
+								<img
+									class="paytable-symbol-img"
+									src={symbol.src}
+									alt={symbol.name}
+								/>
+								<div class="paytable-desc" style="white-space: pre-line">
+									{symbol.text}
+								</div>
 							</div>
 						{/each}
+
 						{@render props.children()}
 					</div>
 				</div>
@@ -50,6 +153,7 @@
 		</BaseContent>
 	</Popup>
 {/if}
+
 
 <style>
 	.paytable-modal-outer {

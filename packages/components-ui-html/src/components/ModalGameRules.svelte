@@ -135,7 +135,7 @@
 		<BaseContent maxWidth="100%">
 			<BaseScrollable type="column">
 				<div class="modal-rules-scroll">
-					<h2>DEAF PRESIDENTS</h2>
+					<h2>The Bang Gang</h2>
 					<h2> Game Information</h2>
 
 					<section>
@@ -204,12 +204,12 @@
 					<section>
 						<h3>Maximum Award</h3>
 						<p>
-							The maximum possible Award is capped at <b>10,000× </b>.
+							The maximum possible Award is capped at <b>30,000× </b>.
 						</p>
-						<p><b>Max Award Base Game:</b> 10,000×</p>
-						<p><b>Max Award Did Not Inhale Spins:</b> 10,000×</p>
-						<p><b>Max Award Honest Abe Spins:</b> 10,000×</p>
-						<p><b>Max Award Osama Killer Spins:</b> 10,000×</p>
+						<p><b>Max Award Base Game:</b> 30,000×</p>
+						<p><b>Max Award Did Not Inhale Spins:</b> 30,000×</p>
+						<p><b>Max Award Honest Abe Spins:</b> 30,000×</p>
+						<p><b>Max Award Osama Killer Spins:</b> 30,000×</p>
 					</section>
 
 					<section>
