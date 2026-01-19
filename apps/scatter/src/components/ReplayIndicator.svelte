@@ -18,7 +18,7 @@
 		color: #000;
 		padding: 12px 32px;
 		border-radius: 8px;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		font-weight: 700;
 		font-size: 1.2rem;
 		z-index: 1000;

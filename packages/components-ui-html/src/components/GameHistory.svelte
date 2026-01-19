@@ -65,7 +65,7 @@
 	.history-table {
 		width: 100%;
 		border-collapse: collapse;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		color: #00fff0;
 		font-size: 0.9rem;
 	}
@@ -148,7 +148,7 @@
 		border: 1px solid rgba(255, 50, 50, 0.4);
 		color: #ff3232;
 		border-radius: 4px;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		cursor: pointer;
 		transition: all 0.2s;
 	}

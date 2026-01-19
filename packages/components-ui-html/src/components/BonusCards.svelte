@@ -67,7 +67,7 @@
 		font-size: 1rem;
 		line-height: 1rem;
 		text-align: center;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 	}
 
 	.description {
@@ -77,7 +77,7 @@
 		white-space: pre-line;
 		display: inline-flex;
 		align-items: center;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 	}
 
 	.description:empty {

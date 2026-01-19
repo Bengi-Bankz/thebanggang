@@ -44,7 +44,7 @@ import FrameDisplay from '../framedisplay.svelte';
 	<MainContainer>
 		<Container
 			x={context.stateLayoutDerived.mainLayout().width * 0.5 - 150}
-			y={context.stateLayoutDerived.mainLayout().height * 0.5 - 150}
+			y={context.stateLayoutDerived.mainLayout().height * 0.25 - 150}
 		>
 			<FrameDisplay frameKeys={loadingFrames} assetKey="loading" width={300} height={300} loop />
 			{#if !context.stateApp.loaded}
@@ -62,43 +62,41 @@ import FrameDisplay from '../framedisplay.svelte';
 			{/if}
 		</Container>
 
-		{#if mode === 'intro'}
-			<Container
-				x={
-					isPortrait
-						? context.stateLayoutDerived.mainLayout().width * 0.5 - factWidth * 0.5
-						: context.stateLayoutDerived.mainLayout().width * 0.5 - totalWidthRow * 0.5
-				}
-				y={context.stateLayoutDerived.mainLayout().height * 0.5 + 200}
-			>
-				{#each introFacts as fact, index}
-					<Container
-						x={isPortrait ? 0 : index * (factWidth + factGap)}
-						y={isPortrait ? index * (factHeight + factGap) : 0}
-					>
-						<Sprite
-							key="roundedrec.png"
-							width={factWidth}
-							height={factHeight}
-							alpha={0.9}
-						/>
-						<Text
-							x={factWidth * 0.5}
-							y={factHeight * 0.5}
-							anchor={{ x: 0.5, y: 0.5 }}
-							style={{
-								fontFamily: 'Arial',
-								fontSize: 20,
-								fontWeight: '700',
-								fill: 0xffffff,
-								align: 'center',
-							}}
-							text={`${fact.title}: ${fact.detail}`}
-						/>
-					</Container>
-				{/each}
-			</Container>
-		{/if}
+		<Container
+			x={
+				isPortrait
+					? context.stateLayoutDerived.mainLayout().width * 0.5 - factWidth * 0.5
+					: context.stateLayoutDerived.mainLayout().width * 0.5 - totalWidthRow * 0.5
+			}
+			y={context.stateLayoutDerived.mainLayout().height * 0.25 + 200}
+		>
+			{#each introFacts as fact, index}
+				<Container
+					x={isPortrait ? 0 : index * (factWidth + factGap)}
+					y={isPortrait ? index * (factHeight + factGap) : 0}
+				>
+					<Sprite
+						key="roundedrec.png"
+						width={factWidth}
+						height={factHeight}
+						alpha={0.9}
+					/>
+					<Text
+						x={factWidth * 0.5}
+						y={factHeight * 0.5}
+						anchor={{ x: 0.5, y: 0.5 }}
+						style={{
+							fontFamily: 'Crimes Times Six',
+							fontSize: 20,
+							fontWeight: '700',
+							fill: 0xffffff,
+							align: 'center',
+						}}
+						text={`${fact.title}: ${fact.detail}`}
+					/>
+				</Container>
+			{/each}
+		</Container>
 	</MainContainer>
 </FadeContainer>
 

@@ -92,7 +92,7 @@
 			text="Bonus"
 			style={{
 				align: 'center',
-				fontFamily: 'BungeeSpice-Regular',
+				fontFamily: 'Crimes Times Six',
 				fontSize: UI_BASE_SIZE * 0.25,
 				fill: textColor(),
 				dropShadow: true,

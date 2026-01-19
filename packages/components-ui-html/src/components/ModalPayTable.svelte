@@ -231,7 +231,7 @@
 		font-size: 2rem;
 		font-weight: 500;
 		text-align: center;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		line-height: 1.6;
 	}
 

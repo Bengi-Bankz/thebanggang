@@ -17,7 +17,7 @@
 
 <style>
 	h2 {
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		color: #00fff0;
 		font-size: 2rem;
 		font-weight: 600;

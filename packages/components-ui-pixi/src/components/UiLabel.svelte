@@ -18,13 +18,13 @@
 	const props: Props = $props();
 
 	const labelStyle = {
-		fontFamily: 'BungeeSpice-Regular',
+		fontFamily: 'Crimes Times Six',
 		fontSize: props.small ? UI_BASE_FONT_SIZE * 0.6 : UI_BASE_FONT_SIZE,
 		fill: WHITE,
 	} as const;
 
 	const valueStyle = {
-		fontFamily: 'BungeeSpice-Regular',
+		fontFamily: 'Crimes Times Six',
 		fontSize: props.small ? UI_BASE_FONT_SIZE * 0.5 : UI_BASE_FONT_SIZE * 0.9,
 		fill: WHITE,
 	} as const;

@@ -1,4 +1,14 @@
 export default {
+	'BungeeSpice-Regular': {
+		type: 'sprite',
+		src: new URL('../../BungeeSpice-Regular.ttf', import.meta.url).href,
+		preload: true,
+	},
+	'Crimes Times Six': {
+		type: 'sprite',
+		src: new URL('../../Crimes%20Times%20Six.ttf', import.meta.url).href,
+		preload: true,
+	},
 	S_19: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/19-27/19.png', import.meta.url).href,
@@ -265,6 +275,11 @@ export default {
 	purpleFont: {
 		type: 'font',
 		src: new URL('../../assets/fonts/purpleFont/mm_purple.xml', import.meta.url).href,
+	},
+	crimefont: {
+		type: 'font',
+		src: new URL('../../assets/fonts/crimefont/Crime Times Six_0.xml', import.meta.url).href,
+		preload: true,
 	},
 	bigwin: {
 		type: 'spine',

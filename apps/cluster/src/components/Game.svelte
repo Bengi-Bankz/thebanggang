@@ -91,7 +91,7 @@
 					anchor={{ x: 1, y: 0 }}
 					text="ADD YOUR LOGO"
 					style={{
-						fontFamily: 'BungeeSpice-Regular',
+						fontFamily: 'Crimes Times Six',
 						fontSize: REM * 1.5,
 						fontWeight: '600',
 						lineHeight: REM * 2,

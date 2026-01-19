@@ -19,7 +19,7 @@
 	);
 	const textProps = {
 		style: {
-			   fontFamily: 'BungeeSpice-Regular, sans-serif',
+			   fontFamily: 'Crimes Times Six, sans-serif',
 			fontSize: REM * 1.5,
 			fontWeight: '600',
 			lineHeight: REM * 2,

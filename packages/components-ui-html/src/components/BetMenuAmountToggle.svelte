@@ -41,7 +41,7 @@
 	}
 
 	.amount {
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		font-size: 1.2rem;
 		font-weight: bold;
 		text-shadow: 0 0 10px rgba(100, 149, 237, 0.5);

@@ -181,7 +181,7 @@ import { onMount } from 'svelte';
             anchor={{ x: 1, y: 0 }}
             text="Only Spins Studios"
             style={{
-              fontFamily: 'BungeeSpice-Regular',
+              fontFamily: 'Crimes Times Six',
               fontWeight: '600',
             }}
           />

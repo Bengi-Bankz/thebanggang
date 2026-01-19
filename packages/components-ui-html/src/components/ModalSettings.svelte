@@ -16,7 +16,7 @@
 
 <style>
     .history-button {
-        font-family: 'BungeeSpice-Regular', sans-serif;
+        font-family: 'Crimes Times Six', sans-serif;
         background: linear-gradient(135deg, #00fff0 0%, #00bfa5 100%);
         color: #000;
         border: none;

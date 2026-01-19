@@ -30,7 +30,7 @@
 		border: none;
 		padding: 16px 40px;
 		border-radius: 12px;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		font-weight: 700;
 		font-size: 1.1rem;
 		cursor: pointer;

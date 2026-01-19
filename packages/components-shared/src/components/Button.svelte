@@ -21,7 +21,7 @@
 	.button {
 		width: 100%;
 		position: relative;
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		cursor: pointer;
 		display: inline-flex;
 		justify-content: center;

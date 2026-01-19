@@ -99,7 +99,7 @@
                             text=""
                             style={{
                                 align: 'center',
-                                fontFamily: 'bungeeSpice',
+                                fontFamily: 'Crimes Times Six',
                                 fontSize: BUTTON_SIZE * 0.4,
                                 fill: textColor(),
                                 dropShadow: true,
@@ -117,7 +117,7 @@
                             text="Bonus"
                             style={{
                                 align: 'center',
-                                fontFamily: 'bungeeSpice',
+                                fontFamily: 'Crimes Times Six',
                                 fontSize: BUTTON_SIZE * 0.4,
                                 fill: textColor(),
                                 dropShadow: true,
@@ -137,7 +137,7 @@
                             text=""
                             style={{
                                 align: 'center',
-                                fontFamily: 'bungeeSpice',
+                                fontFamily: 'Crimes Times Six',
                                 fontSize: BUTTON_SIZE * 0.4,
                                 fill: textColor(),
                                 dropShadow: true,

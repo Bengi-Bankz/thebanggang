@@ -28,7 +28,7 @@
 
 <style>
 	:global(h2, h3, p, li) {
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		color: #00fff0;
 	}
 	h2 {

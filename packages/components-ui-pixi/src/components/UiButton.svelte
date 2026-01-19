@@ -71,7 +71,7 @@
         align: 'center',
         wordWrap: true,
         wordWrapWidth: buttonProps.sizes.width + 20,
-        fontFamily: 'BungeeSpice-Regular',
+        fontFamily: 'Crimes Times Six',
         fontWeight: '600',
         fontSize: UI_BASE_FONT_SIZE * .95,
         fill: textColor(),

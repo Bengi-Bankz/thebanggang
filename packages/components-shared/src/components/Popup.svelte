@@ -66,7 +66,7 @@
 
 <style lang="scss">
 	.pop-up-wrap {
-		font-family: 'BungeeSpice-Regular', sans-serif;
+		font-family: 'Crimes Times Six', sans-serif;
 		touch-action: manipulation;
 		color: white;
 		position: fixed;
