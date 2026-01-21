@@ -1,8 +1,20 @@
 /* Tailwind removed */
 
 @font-face {
-	font-family: 'BungeeSpice-Regular';
-	src: url('./BungeeSpice-Regular.ttf') format('truetype');
+	font-family: 'Crimes Times Six';
+	src: url('./Crimes Times Six.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Crimes Times Six';
+	src: url('./Crimes Times Six.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Crimes Times Six';
+	src: url('./Crimes Times Six.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }

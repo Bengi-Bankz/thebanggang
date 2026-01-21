@@ -1,12 +1,7 @@
 export default {
-	'BungeeSpice-Regular': {
-		type: 'sprite',
-		src: new URL('../../BungeeSpice-Regular.ttf', import.meta.url).href,
-		preload: true,
-	},
 	'Crimes Times Six': {
-		type: 'sprite',
-		src: new URL('../../Crimes%20Times%20Six.ttf', import.meta.url).href,
+		type: 'sprites',
+		src: new URL('../../static/assets/fonts/crimefont/Crime Times Six_0.json', import.meta.url).href,
 		preload: true,
 	},
 	S_19: {
