@@ -341,14 +341,6 @@ export default {
 		},
 		preload: true,
 	},
-	featuringBg: {
-		type: 'sprite',
-		src: new URL(
-			'../../static/assets/spines/foregroundAnimation/Featuring.webp',
-			import.meta.url,
-		).href,
-		preload: true,
-	},
 	foregroundFeatureAnimation: {
 		type: 'spine',
 		src: {

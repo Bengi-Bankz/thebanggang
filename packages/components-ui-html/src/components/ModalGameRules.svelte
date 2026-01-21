@@ -165,7 +165,7 @@
 											<img src={img26} alt="Bonus Bang Spins" />
 										</div>
 									</div>
-									<div class="paytable-desc" style="font-size:1.25rem;">Trigger: Land 4/5/6 scatter symbols<br>Free Spins: 8 / 10 / 12 (for 4 / 5 / 6 scatters)<br>Purchase Amount: <b>200×</b><br>Retriggers inside bonus: 2 scatters add +2 spins; 4 scatters add +4 spins.<br><br>Bang into the action with Bonus Bang Spins. Scatters light the fuse for free spins with stacked symbols and rising duel multipliers that push you toward the massive 10,000× top potential. You can also buy straight into the chaos for faster thrills.</div>
+									<div class="paytable-desc" style="font-size:1.25rem;">Trigger: Land 4/5/6 scatter symbols<br>Free Spins: 8 / 10 / 12 (for 4 / 5 / 6 scatters)<br>Purchase Amount: <b>200×</b><br>Retriggers inside bonus: 2 scatters add +2 spins; 4 scatters add +4 spins.<br><br>Bang into the action with Bonus Bang Spins. Scatters light the fuse for free spins with stacked symbols and rising duel multipliers that push you toward the massive 30,000× top potential. You can also buy straight into the chaos for faster thrills.</div>
 								</div>
 							</div>
 						</div>
