@@ -14,6 +14,10 @@
 	const context = getContext();
 </script>
 
+<Container x={20} y={20} scale={0.4}>
+	{@render props.logo()}
+</Container>
+
 <Container x={20} y={20}>
     {@render props.gameName({ y: 0 })}
 </Container>

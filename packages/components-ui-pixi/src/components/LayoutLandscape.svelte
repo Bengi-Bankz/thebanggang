@@ -13,8 +13,11 @@
 	const context = getContext();
 </script>
 
-
-
+<MainContainer standard alignVertical="top">
+	<Container x={20} y={20} scale={0.4}>
+		{@render props.logo()}
+	</Container>
+</MainContainer>
 
 <MainContainer standard alignVertical="bottom">
 	<Container
