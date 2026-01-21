@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 
 	import { Text } from 'pixi-svelte';
+	import { stateForce } from 'state-shared';
 
 	import { gameActor } from '../game/actor';
 	import { getContext } from '../game/context';
@@ -21,6 +22,11 @@
 
 		gameActor.start();
 		gameActor.send({ type: 'RENDERED' });
+
+		// Check if force mode is enabled and trigger it
+		if (stateForce.force) {
+			gameActor.send({ type: 'FORCE_RESULT' });
+		}
 
 		return () => {
 			// Equivalent to onDestroy(); Leave this comment for searching.

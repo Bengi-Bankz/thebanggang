@@ -2,7 +2,7 @@
 	import { onMount, type Snippet } from 'svelte';
 
 	import { requestAuthenticate } from 'rgs-requests';
-	import { stateUrlDerived, stateBet, stateConfig, stateModal } from 'state-shared';
+	import { stateUrlDerived, stateBet, stateConfig, stateModal, stateForce } from 'state-shared';
 	import { API_AMOUNT_MULTIPLIER } from 'constants-shared/bet';
 
 	type Props = { children: Snippet };
@@ -107,6 +107,37 @@
 				if (authenticateData.round?.mode) {
 					stateBet.activeBetModeKey = authenticateData.round.mode;
 				};
+			}
+
+			// Initialize force mode from URL parameters
+			if (stateUrlDerived.force()) {
+				stateForce.force = true;
+				stateForce.forceType = 'api';
+				
+				// Read bookID from URL
+				const bookID = stateUrlDerived.bookID();
+				if (bookID) {
+					stateForce.forceSearch.bookID = Number(bookID);
+				}
+				
+				// Read eventID from URL (if you want to support that too)
+				const eventID = stateUrlDerived.eventID();
+				if (eventID) {
+					// Set event ID if your force search supports it
+					// stateForce.forceSearch.eventID = Number(eventID);
+				}
+				
+				// Read mode from URL
+				const urlMode = stateUrlDerived.urlMode();
+				if (urlMode) {
+					stateForce.forceBetModeKey = urlMode as any;
+				}
+				
+				// Read amount from URL (if needed)
+				const urlAmount = stateUrlDerived.urlAmount();
+				if (urlAmount) {
+					stateBet.betAmount = Number(urlAmount);
+				}
 			}
 		} catch (error) {
 			console.error(error);

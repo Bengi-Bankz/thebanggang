@@ -12,6 +12,10 @@ export type Key =
 	| 'social'
 	| 'demo'
 	| 'force'
+	| 'bookID'
+	| 'eventID'
+	| 'amount'
+	| 'mode'
 ;
 
 const getUrlSearchParam = (key: Key) => page.url.searchParams.get(key);
@@ -22,6 +26,10 @@ const sessionID = () => getUrlSearchParam('sessionID') || '';
 const rgsUrl = () => getUrlSearchParam('rgs_url') || '';
 const force = () => getUrlSearchParam('force') === 'true';
 const social = () => getUrlSearchParam('social') === 'true';
+const bookID = () => getUrlSearchParam('bookID');
+const eventID = () => getUrlSearchParam('eventID');
+const urlAmount = () => getUrlSearchParam('amount');
+const urlMode = () => getUrlSearchParam('mode');
 
 export const stateUrlDerived = {
 	lang,
@@ -29,4 +37,8 @@ export const stateUrlDerived = {
 	rgsUrl,
 	force,
 	social,
+	bookID,
+	eventID,
+	urlAmount,
+	urlMode,
 };

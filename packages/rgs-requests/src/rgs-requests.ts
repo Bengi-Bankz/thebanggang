@@ -53,6 +53,7 @@ export const requestEndEvent = async (options: {
 };
 
 export const requestForceResult = async (options: {
+	sessionID: string;
 	mode: string;
 	search: {
 		bookID?: number;
@@ -68,6 +69,7 @@ export const requestForceResult = async (options: {
 		rgsUrl: options.rgsUrl,
 		url: '/game/search',
 		variables: {
+			sessionID: options.sessionID,
 			mode: options.mode,
 			search: options.search,
 		},

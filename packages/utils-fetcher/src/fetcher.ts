@@ -6,11 +6,14 @@ export const fetcher = (options: {
 }) => {
 	const { method, endpoint, variables } = options;
 
+	const body = method === 'GET' ? undefined : JSON.stringify(variables);
+	console.log('[fetcher] Request:', { method, endpoint, body });
+
 	return (options.fetch ?? fetch)(endpoint, {
 		method,
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		...(method === 'GET' ? {} : { body: JSON.stringify(variables) }),
+		...(method === 'GET' ? {} : { body }),
 	});
 };

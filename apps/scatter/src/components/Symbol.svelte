@@ -26,6 +26,7 @@
 {#if isWinAnimation && symbolInfo}
    <ScatterAnimation
 	   assetKeys={(symbolInfo as any).assetKeys}
+	   frameRate={props.rawSymbol.name === 'S' ? 24 : 8}
 	   x={props.x}
 	   y={props.y}
 	   width={SYMBOL_SIZE * symbolInfo.sizeRatios.width}

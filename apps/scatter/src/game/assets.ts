@@ -170,6 +170,11 @@ export default {
 		src: {
 			atlas: new URL('../../assets/spines/symbols2/symbols2.atlas', import.meta.url).href,
 			skeleton: new URL('../../assets/spines/symbols2/S.json', import.meta.url).href,
+				scatterWin: {
+					type: 'sprites',
+					src: new URL('../../static/assets/sprites/S/S.webp.json', import.meta.url).href,
+					preload: true,
+				},
 			scale: 2,
 		},
 	},
@@ -334,6 +339,14 @@ export default {
 			skeleton: new URL('../../assets/spines/foregroundAnimation/mm_bg.json', import.meta.url).href,
 			scale: 2,
 		},
+		preload: true,
+	},
+	featuringBg: {
+		type: 'sprite',
+		src: new URL(
+			'../../static/assets/spines/foregroundAnimation/Featuring.webp',
+			import.meta.url,
+		).href,
 		preload: true,
 	},
 	foregroundFeatureAnimation: {

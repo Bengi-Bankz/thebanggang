@@ -206,6 +206,7 @@ function createPrimaryMachines<TBet extends BaseBet>(options: Options<TBet>) {
 			const forceWithApi = async () => {
 				return await requestForceResult({
 					rgsUrl: stateUrlDerived.rgsUrl(),
+					sessionID: stateUrlDerived.sessionID(),
 					mode: stateForce.forceBetModeKey.toUpperCase(),
 					search: {
 						bookID:
