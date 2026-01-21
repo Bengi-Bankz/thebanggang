@@ -168,6 +168,12 @@ const m4Static = {
 const m5Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };
 const m7Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };
 const m10Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };
+const m15Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };
+const m25Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };		
+const m50Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };
+const m100Static = { type: 'sprite', assetKey: 'm.png', sizeRatios: { width: 1, height: 1 } };	
+
+
 
 const wSizeRatios = { width: 1.5 * 0.9, height: SPECIAL_SYMBOL_SIZE * 1.15 };
 const sSizeRatios = { width: 1.2, height: SPECIAL_SYMBOL_SIZE * 1.4 };
@@ -371,35 +377,35 @@ export const SYMBOL_INFO_MAP = {
 	},
 	M_2: {
 		explosion,
-		postWinStatic: m2Static,
-		static: m2Static,
-		spin: m2Static,
-		win: m2Static,
-		land: m2Static,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
 	},
 	M_4: {
 		explosion,
-		postWinStatic: m4Static,
-		static: m4Static,
-		spin: m4Static,
-		win: m4Static,
-		land: m4Static,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
 	},
 	M_5: {
 		explosion,
-		postWinStatic: m5Static,
-		static: m5Static,
-		spin: m5Static,
-		win: m5Static,
-		land: m5Static,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
 	},
 	M_7: {
 		explosion,
-		postWinStatic: m7Static,
-		static: m7Static,
-		spin: m7Static,
-		win: m7Static,
-		land: m7Static,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
 	},
 	M_10: {
 		explosion,
@@ -410,6 +416,30 @@ export const SYMBOL_INFO_MAP = {
 		land: m10Static,
 	},
 	M_15: {
+		explosion,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
+	},
+	M_25: {
+		explosion,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
+	},
+	M_50: {
+		explosion,
+		postWinStatic: m10Static,
+		static: m10Static,
+		spin: m10Static,
+		win: m10Static,
+		land: m10Static,
+	},
+	M_100: {
 		explosion,
 		postWinStatic: m10Static,
 		static: m10Static,
@@ -430,7 +460,10 @@ export const MULTIPLIER_BACKGROUND_INFO_MAP = {
 	M_5: backgroundMid,
 	M_7: backgroundMid,
 	M_10: backgroundHigh,
-	M_15: backgroundHigh, // Use high background for debug
+	M_15: backgroundHigh,
+	M_25: backgroundHigh,
+	M_50: backgroundHigh,
+	M_100: backgroundHigh,
 };
 
 export const SCATTER_LAND_SOUND_MAP = {
