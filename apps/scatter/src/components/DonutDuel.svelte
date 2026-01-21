@@ -7,6 +7,7 @@
 	
 	import { getContext } from '../game/context';
 	import FramedDisplay from '../framedisplay.svelte';
+	import MultiplierNumber from './MultiplierNumber.svelte';
 	import { SYMBOL_SIZE } from '../game/constants';
 
 	type Props = {
@@ -168,17 +169,12 @@
 		<!-- VS Animation Phase with large Multiplier Comparison -->
 		{#if phase === 'vs-reveal' && showVSAnimation}
 			<!-- Grenade Robber Multiplier (left) - Large display -->
-			<BitmapText
-				anchor={0.5}
+			<MultiplierNumber
+				multiplier={grenadeMultiplier}
+				color="blue"
 				x={-SYMBOL_SIZE * 1.2}
 				y={0}
-				text={`${grenadeMultiplier}X`}
-				style={{
-					fontFamily: 'purple',
-					fontSize: SYMBOL_SIZE * 0.8,
-					letterSpacing: -3,
-					fontWeight: 'bold',
-				}}
+				scale={1.5}
 			/>
 
 			<!-- VS Animation in center -->
@@ -194,17 +190,12 @@
 			/>
 
 			<!-- Donut Cop Multiplier (right) - Large display -->
-			<BitmapText
-				anchor={0.5}
+			<MultiplierNumber
+				multiplier={copMultiplier}
+				color="red"
 				x={SYMBOL_SIZE * 1.2}
 				y={0}
-				text={`${copMultiplier}X`}
-				style={{
-					fontFamily: 'purple',
-					fontSize: SYMBOL_SIZE * 0.8,
-					letterSpacing: -3,
-					fontWeight: 'bold',
-				}}
+				scale={1.5}
 			/>
 		{/if}
 
@@ -246,17 +237,13 @@
 				y={multiplierDropY.current}
 				scale={multiplierDropScale.current}
 			>
-				<BitmapText
-					anchor={0.5}
+				<MultiplierNumber
+					multiplier={props.multiplierValue}
+					color="blue"
 					x={0}
 					y={0}
-					text={`${props.multiplierValue}X`}
-					style={{
-						fontFamily: 'purple',
-						fontSize: SYMBOL_SIZE * 0.4,
-						letterSpacing: -2,
-						fontWeight: 'bold',
-					}}
+					scale={1}
+				/>
 				/>
 			</Container>
 		{/if}

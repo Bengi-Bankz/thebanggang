@@ -4,6 +4,11 @@ export default {
 		src: new URL('../../assets/sprites/logo/logo.webp', import.meta.url).href,
 		preload: true,
 	},
+	multinumbers: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/multinumbers/multinumbers.webp.json', import.meta.url).href,
+		preload: true,
+	},
 	'Crimes Times Six': {
 		type: 'sprites',
 		src: new URL('../../static/assets/fonts/crimefont/Crime Times Six_0.json', import.meta.url).href,

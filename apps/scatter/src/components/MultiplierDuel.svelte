@@ -6,6 +6,7 @@
 	import { stateBetDerived } from 'state-shared';
 	import { getContext } from '../game/context';
 	import { SYMBOL_SIZE } from '../game/constants';
+	import MultiplierNumber from './MultiplierNumber.svelte';
 
 	type Props = {
 		x?: number;
@@ -20,7 +21,7 @@
 	const context = getContext();
 
 	const MULTIPLIER_VALUES = [2, 4, 5, 7, 10, 50, 100];
-	
+
 	// Get random multiplier (different from real)
 	const getRandomMultiplier = () => {
 		const available = MULTIPLIER_VALUES.filter(v => v !== props.realMultiplier);
@@ -187,16 +188,12 @@
 					x={0}
 					y={-SYMBOL_SIZE * 0.3}
 				/>
-				<BitmapText
-					anchor={0.5}
+				<MultiplierNumber
+					multiplier={fakeMultiplier}
+					color="red"
 					x={0}
 					y={SYMBOL_SIZE * 0.5}
-					text={`${fakeMultiplier}X`}
-					style={{
-						fontFamily: 'purple',
-						fontSize: SYMBOL_SIZE * 0.25,
-						letterSpacing: -1,
-					}}
+					scale={0.8}
 				/>
 			</Container>
 		{/if}
@@ -227,23 +224,11 @@
 		{#if phase === 'winner-reveal'}
 			<Container y={winnerY.current}>
 				<Sprite
-					key="play"
+					key="multinumbers"
 					anchor={0.5}
-					scale={0.9 * winnerScale.current}
+					scale={1}
 					x={0}
 					y={0}
-					tint={0xffd93d}
-				/>
-				<BitmapText
-					anchor={0.5}
-					x={0}
-					y={SYMBOL_SIZE * 0.5}
-					text={`${winnerMultiplier}X`}
-					style={{
-						fontFamily: 'purple',
-						fontSize: SYMBOL_SIZE * 0.35,
-						letterSpacing: -2,
-					}}
 				/>
 			</Container>
 		{/if}
