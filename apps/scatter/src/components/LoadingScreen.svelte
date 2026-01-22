@@ -1,4 +1,5 @@
 <script lang="ts">
+import { onMount, onDestroy } from 'svelte';
 import FrameDisplay from '../framedisplay.svelte';
 	import { Container, Sprite, Text } from 'pixi-svelte';
 	import { FadeContainer, LoadingProgress } from 'components-pixi';
@@ -20,16 +21,30 @@ import FrameDisplay from '../framedisplay.svelte';
 	const isPortrait = $derived(layoutType === 'portrait');
 
 	let loadingType = $state<'start' | 'transition'>('start');
+	let currentIndex = $state<number>(0);
+	let carouselInterval: number | undefined;
 
 	const introFrames = ['intro1.png', 'intro2.png', 'intro3.png'];
 
 	const factWidth = 220;
 	const factHeight = 220;
 	const factGap = 16;
+	const portraitRatio = 0.85; // percentage of main width for portrait card size
 	const totalWidthRow = factWidth * introFrames.length + factGap * (introFrames.length - 1);
 
 	// Generate array of frame keys for loading animation
 	const loadingFrames = Array.from({ length: 36 }, (_, i) => `loading_000 (${i + 1}).png`);
+
+	onMount(() => {
+		// auto-advance carousel every 3 seconds
+		carouselInterval = window.setInterval(() => {
+			currentIndex = (currentIndex + 1) % introFrames.length;
+		}, 3000);
+	});
+
+	onDestroy(() => {
+		if (carouselInterval) clearInterval(carouselInterval);
+	});
 </script>
 
 
@@ -61,27 +76,43 @@ import FrameDisplay from '../framedisplay.svelte';
 		<Container
 			x={
 				isPortrait
-					? context.stateLayoutDerived.mainLayout().width * 0.5 - factWidth * 0.5
+					? context.stateLayoutDerived.mainLayout().width * 0.5 - (context.stateLayoutDerived.mainLayout().width * portraitRatio) * 0.5
 					: context.stateLayoutDerived.mainLayout().width * 0.5 - totalWidthRow * 0.5
 			}
 			y={context.stateLayoutDerived.mainLayout().height * 0.25 + 200}
 		>
-			{#each introFrames as spriteKey, index}
-				<Container
-					x={isPortrait ? 0 : index * (factWidth + factGap)}
-					y={isPortrait ? index * (factHeight + factGap) : 0}
-				>
-					<Sprite
-						assetKey="S_19_27"
-						key={spriteKey}
-						x={factWidth * 0.5}
-						y={factHeight * 0.5}
+			<!-- carousel track: slides horizontally in portrait -->
+			<Container x={isPortrait ? -currentIndex * (context.stateLayoutDerived.mainLayout().width * portraitRatio + factGap) : 0}>
+				{#each introFrames as spriteKey, index}
+					<Container x={index * (isPortrait ? (context.stateLayoutDerived.mainLayout().width * portraitRatio + factGap) : (factWidth + factGap))} y={0}>
+						<Sprite
+							assetKey={spriteKey}
+							key={spriteKey}
+							x={(isPortrait ? (context.stateLayoutDerived.mainLayout().width * portraitRatio) : factWidth) * 0.5}
+							y={(isPortrait ? (context.stateLayoutDerived.mainLayout().width * portraitRatio) : factHeight) * 0.5}
+							anchor={{ x: 0.5, y: 0.5 }}
+							width={isPortrait ? context.stateLayoutDerived.mainLayout().width * portraitRatio : factWidth}
+							height={isPortrait ? context.stateLayoutDerived.mainLayout().width * portraitRatio : factHeight}
+						/>
+					</Container>
+				{/each}
+			</Container>
+
+			<!-- pagination dots (centered) -->
+			<Container
+				x={isPortrait ? (context.stateLayoutDerived.mainLayout().width * portraitRatio) * 0.5 - (introFrames.length * 16) * 0.5 : totalWidthRow * 0.5 - (introFrames.length * 16) * 0.5}
+				y={isPortrait ? context.stateLayoutDerived.mainLayout().width * portraitRatio + 24 : factHeight + 24}
+			>
+				{#each introFrames as _, i}
+					<Text
+						x={i * 16}
+						y={0}
 						anchor={{ x: 0.5, y: 0.5 }}
-						width={factWidth}
-						height={factHeight}
+						style={{ fontFamily: 'Crimes Times Six', fontSize: 18, fill: i === currentIndex ? 0xffffff : 0x888888 }}
+						text={i === currentIndex ? '●' : '○'}
 					/>
-				</Container>
-			{/each}
+				{/each}
+			</Container>
 		</Container>
 
 		<!-- Press to continue text between loader and info cards -->
