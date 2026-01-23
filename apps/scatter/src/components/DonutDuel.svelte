@@ -9,7 +9,7 @@
 	import { getContext } from '../game/context';
 	import FramedDisplay from '../framedisplay.svelte';
 	import MultiplierNumber from './MultiplierNumber.svelte';
-	import { SYMBOL_SIZE } from '../game/constants';
+	import { SYMBOL_SIZE, BOARD_DIMENSIONS } from '../game/constants';
 
 	type Props = {
 		x?: number;
@@ -48,6 +48,33 @@
 	const getMultiplierSize = (multiplier: number) => {
 		const largeMultipliers = [10, 15, 25, 50, 100];
 		return largeMultipliers.includes(multiplier) ? SYMBOL_SIZE * 1.4 : SYMBOL_SIZE * 1.2;
+	};
+
+	// Helper to determine if multiplier is on an end column (left or right edge)
+	const isEndColumn = (): boolean => {
+		if (!props.gridPosition) return false;
+		const col = props.gridPosition.col;
+		const boardWidth = BOARD_DIMENSIONS.x;
+		return col === 0 || col === boardWidth - 1;
+	};
+
+	// Helper to get multiplier positions (horizontal vs vertical arrangement)
+	const getMultiplierPositions = () => {
+		if (isEndColumn()) {
+			// Vertical arrangement: blue above, red below
+			return {
+				blue: { x: 0, y: -SYMBOL_SIZE },
+				red: { x: 0, y: SYMBOL_SIZE },
+				vs: { x: 0, y: 0 }
+			};
+		} else {
+			// Horizontal arrangement: blue left, red right
+			return {
+				blue: { x: -SYMBOL_SIZE * 1.3, y: 0 },
+				red: { x: SYMBOL_SIZE * 1.3, y: 0 },
+				vs: { x: -SYMBOL_SIZE * 0.8, y: 0 }
+			};
+		}
 	};
 	
 	let phase = $state<DuelPhase>('hidden');
@@ -184,12 +211,13 @@
 
 		<!-- VS Animation Phase with large Multiplier Comparison -->
 		{#if phase === 'vs-reveal' && showVSAnimation}
-			<!-- Grenade Robber Multiplier (left) - Large display -->
+			{@const positions = getMultiplierPositions()}
+			<!-- Grenade Robber Multiplier (left or top) - Large display -->
 			<MultiplierNumber
 				multiplier={grenadeMultiplier}
 				color="blue"
-				x={-SYMBOL_SIZE * 1.3}
-				y={0}
+				x={positions.blue.x}
+				y={positions.blue.y}
 				width={getMultiplierSize(grenadeMultiplier)}
 				height={getMultiplierSize(grenadeMultiplier)}
 				anchor={{ x: 0.5, y: 0.5 }}
@@ -198,8 +226,8 @@
 			<!-- VS Animation in center -->
 			<FramedDisplay
 				frameKeys={VS_ANIMATION_FRAMES}
-				x={-SYMBOL_SIZE * 0.8}
-				y={0}
+				x={positions.vs.x}
+				y={positions.vs.y}
 				width={SYMBOL_SIZE * 1.6}
 				height={SYMBOL_SIZE * 1.6}
 				fps={16}
@@ -207,12 +235,12 @@
 				loop={false}
 			/>
 
-			<!-- Donut Cop Multiplier (right) - Large display -->
+			<!-- Donut Cop Multiplier (right or bottom) - Large display -->
 			<MultiplierNumber
 				multiplier={copMultiplier}
 				color="red"
-				x={SYMBOL_SIZE * 1.3}
-				y={0}
+				x={positions.red.x}
+				y={positions.red.y}
 				width={getMultiplierSize(copMultiplier)}
 				height={getMultiplierSize(copMultiplier)}
 				anchor={{ x: 0.5, y: 0.5 }}
