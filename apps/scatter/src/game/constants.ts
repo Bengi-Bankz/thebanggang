@@ -94,7 +94,7 @@ export const HIGH_SYMBOLS = ['H1', 'H2', 'H3', 'H4', 'H5'];
 
 export const INITIAL_SYMBOL_STATE: SymbolState = 'static';
 
-const M_SIZE = 0.5;
+const M_SIZE = 0.9;
 const HIGH_SYMBOL_SIZE = 0.9;
 const LOW_SYMBOL_SIZE = 0.9;
 const SPECIAL_SYMBOL_SIZE = 0.9;
@@ -725,21 +725,9 @@ export const SYMBOL_INFO_MAP = {
 	},
 	S: {
 		explosion,
-		postWinStatic: {
-			type: 'sprite',
-			assetKey: 'S_19',
-			sizeRatios: sSizeRatios,
-		},
-		static: {
-			type: 'sprite',
-			assetKey: 'S_19',
-			sizeRatios: sSizeRatios,
-		},
-		spin: {
-			type: 'sprite',
-			assetKey: 'S_19',
-			sizeRatios: sSizeRatios,
-		},
+		postWinStatic: sStatic,
+		static: sStatic,
+		spin: sStatic,
 		win: {
 			type: 'sprite',
 			assetKeys: [
@@ -782,11 +770,7 @@ export const SYMBOL_INFO_MAP = {
 			],
 			sizeRatios: sSizeRatios,
 		},
-		land: {
-			type: 'sprite',
-			assetKey: 'S_19',
-			sizeRatios: sSizeRatios,
-		},
+		land: sStatic,
 	},
 	M_2: {
 		explosion,
