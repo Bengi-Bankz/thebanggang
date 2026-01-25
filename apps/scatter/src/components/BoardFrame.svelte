@@ -11,7 +11,7 @@
 
 	const context = getContext();
 	const SPINE_SCALE = { width: 0.59, height: 0.62 };
-	const SPRITE_SCALE = { width: 1.07, height: 1 };
+	const SPRITE_SCALE = { width: 1.5, height: 1.4 };
 	const BG_RATIO = 937 / 806;
 	const POSITION_ADJUSTMENT = 1.01;
 
@@ -64,7 +64,7 @@
 {/if}
 
 <Sprite
-	key="frame_bg.png"
+	key="reelsFrame2"
 	anchor={0.5}
 	x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
 	y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
@@ -72,11 +72,4 @@
 	height={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.height}
 />
 
-<Sprite
-	key="frame_edge.png"
-	anchor={0.5}
-	x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-	y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
-	width={context.stateGameDerived.boardLayout().width * BG_RATIO * SPRITE_SCALE.width}
-	height={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.height}
-/>
+<!-- frame_edge.png removed for reelframe2 -->

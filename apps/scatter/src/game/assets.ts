@@ -9,11 +9,6 @@ export default {
 		src: new URL('../../assets/sprites/multinumbers/multinumbers.webp.json', import.meta.url).href,
 		preload: true,
 	},
-	'Crimes Times Six': {
-		type: 'sprites',
-		src: new URL('../../assets/fonts/crimefont/Crime Times Six_0.json', import.meta.url).href,
-		preload: true,
-	},
 	S_19: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/19-27/19.png', import.meta.url).href,
@@ -58,6 +53,39 @@ export default {
 	bg: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/backgrounds/bg.webp', import.meta.url).href,
+		preload: true,
+	},
+	bgstatic: {
+		type: 'sprite',
+		src: new URL(
+			'../../assets/sprites/bgstatic/bgstatic.webp',
+			import.meta.url,
+		).href,
+		scale: 2,
+		preload: true,
+	},
+	bgstatic2: {
+		type: 'sprites',
+		src: new URL(
+			'../../assets/sprites/bgstatic2/background.webp.json',
+			import.meta.url,
+		).href,
+		preload: true,
+	},
+	arrow: {
+		type: 'sprites',
+		src: new URL(
+			'../../assets/sprites/arrow/arrow.webp.json',
+			import.meta.url,
+		).href,
+		preload: true,
+	},
+	fire: {
+		type: 'sprites',
+		src: new URL(
+			'../../assets/sprites/fire/fire.webp.json',
+			import.meta.url,
+		).href,
 		preload: true,
 	},
 	bg2: {
@@ -202,6 +230,11 @@ export default {
 	reelsFrame: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/reelsFrame/reels_frame.json', import.meta.url).href,
+	},
+	reelsFrame2: {
+		type: 'sprite',
+		src: new URL('../../assets/sprites/reelframe2/frame2.webp', import.meta.url).href,
+		preload: true,
 	},
 	trashcan: {
 		type: 'sprite',

@@ -19,11 +19,19 @@
 	const texture = $derived(
 		(context.stateApp.loadedAssets?.[key] || PIXI.Texture.EMPTY) as LoadedSprite,
 	);
+
+	const missingKeysLogged = new Set<string>();
+	$effect(() => {
+		if (debug) return;
+		if (texture === PIXI.Texture.EMPTY && !missingKeysLogged.has(key)) {
+			missingKeysLogged.add(key);
+			console.warn(`Sprite: key "${key}" is not found in the loadedAssets`);
+		}
+	});
 </script>
 
-{#if texture === PIXI.Texture.EMPTY || debug}
-	{console.error(`Sprite: key "${key}" is not found in the loadedAssets`)}
-	{console.log('loadedAssets', $state.snapshot(context.stateApp).loadedAssets)}
+{#if debug}
+	{console.log('Sprite loadedAssets', $state.snapshot(context.stateApp).loadedAssets)}
 {/if}
 
 <BaseSprite {...baseSpriteProps} {texture} />

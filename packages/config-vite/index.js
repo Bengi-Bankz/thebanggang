@@ -7,6 +7,7 @@ import { lingui } from '@lingui/vite-plugin';
 import tailwindcss from '@tailwindcss/vite';
 
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -33,6 +34,11 @@ export default () =>
 				scss: {
 					api: 'modern-compiler',
 				},
+			},
+		},
+		server: {
+			fs: {
+				allow: [resolve(process.cwd()), resolve(process.cwd(), '..')],
 			},
 		},
 	});
