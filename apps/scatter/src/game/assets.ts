@@ -123,6 +123,61 @@ export default {
 			.href,
 		preload: true,
 	},
+	symbolsheetH1: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/h1.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetH2: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/h2.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetH3: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/h3.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetH4: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/h4.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetH5: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/h5.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetL1: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/l1.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetL2: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/l2.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetL3: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/l3.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetL4: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/l4.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetM: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/m.webp.json', import.meta.url).href,
+		preload: true,
+	},
+	symbolsheetS: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/symbolsheets/s.webp.json', import.meta.url).href,
+		preload: true,
+	},
 	H1: {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/symbols/symbols.webp.json', import.meta.url).href,

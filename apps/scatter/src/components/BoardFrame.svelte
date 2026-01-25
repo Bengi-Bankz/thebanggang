@@ -11,8 +11,9 @@
 
 	const context = getContext();
 	const SPINE_SCALE = { width: 0.59, height: 0.62 };
-	const SPRITE_SCALE = { width: 1.5, height: 1.4 };
-	const BG_RATIO = 937 / 806;
+	const FRAME_SCALE = 1.45;
+	const FRAME_RATIO = 831 / 655;
+	const FRAME_Y_OFFSET = 0.12;
 	const POSITION_ADJUSTMENT = 1.01;
 
 	type AnimationName = 'reelhouse_glow_start' | 'reelhouse_glow_idle' | 'reelhouse_glow_exit';
@@ -67,9 +68,12 @@
 	key="reelsFrame2"
 	anchor={0.5}
 	x={context.stateGameDerived.boardLayout().x * POSITION_ADJUSTMENT}
-	y={context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT}
-	width={context.stateGameDerived.boardLayout().width * BG_RATIO * SPRITE_SCALE.width}
-	height={context.stateGameDerived.boardLayout().width * SPRITE_SCALE.height}
+	y={
+		context.stateGameDerived.boardLayout().y * POSITION_ADJUSTMENT +
+		context.stateGameDerived.boardLayout().height * FRAME_Y_OFFSET
+	}
+	width={context.stateGameDerived.boardLayout().width * FRAME_SCALE}
+	height={(context.stateGameDerived.boardLayout().width * FRAME_SCALE) / FRAME_RATIO}
 />
 
 <!-- frame_edge.png removed for reelframe2 -->
