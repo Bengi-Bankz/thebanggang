@@ -41,16 +41,7 @@
 	const displayHeight = 400;
 </script>
 
-<FramedDisplay
-	assetKey="S_19_27"
-	{frameKeys}
-	x={0}
-	y={0}
-	width={displayWidth}
-	height={displayHeight}
-	fps={24}
-	loop={true}
-/>
+
 
 <style>
 	:global(body) {

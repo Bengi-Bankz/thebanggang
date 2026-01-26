@@ -42,7 +42,7 @@ const DEFAULT_BET_MODE_META = {
 				'https://test-fart-cdn-bucket.s3.ap-southeast-2.amazonaws.com/1_8_97/betModes/button_buy.webp',
 		},
 		text: {
-			title: "BONUS BANG' SPINS",
+			title: "Warlord VS Spins",
 			dialog:
 				'Triggers FREE SPINS with 4 GUARANTEED SCATTERS for 100x the purchase amount. The Global Multiplier can reach up to 64x and remains active for the duration of each spin.',
 			description: '4 guaranteed scatter symbols for free spins.',

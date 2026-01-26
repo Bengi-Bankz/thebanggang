@@ -9,47 +9,7 @@ export default {
 		src: new URL('../../assets/sprites/multinumbers/multinumbers.webp.json', import.meta.url).href,
 		preload: true,
 	},
-	S_19: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/19.png', import.meta.url).href,
-	},
-	S_20: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/20.png', import.meta.url).href,
-	},
-	S_21: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/21.png', import.meta.url).href,
-	},
-	S_22: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/22.png', import.meta.url).href,
-	},
-	S_23: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/23.png', import.meta.url).href,
-	},
-	S_24: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/24.png', import.meta.url).href,
-	},
-	S_25: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/25.png', import.meta.url).href,
-	},
-	S_26: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/26.png', import.meta.url).href,
-	},
-	S_27: {
-		type: 'sprite',
-		src: new URL('../../assets/sprites/19-27/27.png', import.meta.url).href,
-	},
-	S_19_27: {
-		type: 'sprites',
-		src: new URL('../../assets/sprites/19-27/19-27.webp.json', import.meta.url).href,
-		preload: true,
-	},
+	
 	bg: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/backgrounds/bg.webp', import.meta.url).href,
@@ -299,10 +259,6 @@ export default {
 		type: 'sprite',
 		src: new URL('../../assets/fonts/play01/play01.png', import.meta.url).href,
 	},
-	balance: {
-		type: 'sprite',
-		src: new URL('../../assets/fonts/balance/balance.png', import.meta.url).href,
-	},
 	spin: {
 		type: 'sprite',
 		src: new URL('../../assets/fonts/spin/spin.png', import.meta.url).href,
@@ -322,6 +278,10 @@ export default {
 	MoneyFont3: {
 		type: 'font',
 		src: new URL('../../assets/fonts/MoneyFont3/MoneyFont3.xml', import.meta.url).href,
+	},
+	MildEast: {
+		type: 'font',
+		src: new URL('../../assets/fonts/MildEast/MildEast.xml', import.meta.url).href,
 	},
 	auto: {
 		type: 'sprite',
@@ -422,7 +382,7 @@ export default {
 			scale: 2,
 		},
 	},
-	Tumble_multiplier: {
+	tumble_multiplier: {
 		type: 'spine',
 		src: {
 			atlas: new URL('../../assets/spines/tumbleWin/tumble_win.atlas', import.meta.url).href,

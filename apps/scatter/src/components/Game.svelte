@@ -2,6 +2,7 @@
 import { createEventDispatcher } from 'svelte';
 const dispatch = createEventDispatcher();
 import { onMount } from 'svelte';
+import * as PIXI from 'pixi.js';
 
 	import { EnablePixiExtension } from 'components-pixi';
 	import { EnableHotkey } from 'components-shared';
@@ -52,6 +53,16 @@ import { onMount } from 'svelte';
 			typeof localStorage !== 'undefined' && localStorage.getItem('scatter:introSeen') === 'true';
 		loadingMode = hasSeenIntro ? 'default' : 'intro';
 		context.stateLayout.showLoadingScreen = true;
+
+		// --- Load MildEast bitmap font ---
+		PIXI.Assets.add('MildEastFont', {
+			alias: 'MildEast',
+			srcs: [
+				'/assets/fonts/MildEast.xml',
+				'/assets/fonts/mildeast.webp'
+			]
+		});
+		PIXI.Assets.load('MildEastFont');
 	});
 
 	// Subscribe to scatterLandedThisRound and trigger shake on change
@@ -174,7 +185,7 @@ import { onMount } from 'svelte';
 
       <UI>
         {#snippet gameName()}
-          <UiGameName name="THE BANG GANG" />
+          <UiGameName name="Cowboys VS Indians " />
         {/snippet}
         {#snippet logo()}
           <Sprite
@@ -185,6 +196,12 @@ import { onMount } from 'svelte';
             scale={1}
           />
         {/snippet}
+        <BitmapText
+            text="Cowboys VS Indians"
+            fontName="MildEast"
+            fontSize={64}
+            tint={0xffffff}
+        />
       </UI>
       <Win />
       <FreeSpinIntro />

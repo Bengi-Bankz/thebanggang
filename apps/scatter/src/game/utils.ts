@@ -78,22 +78,34 @@ export const getSymbolInfo = ({
 	rawSymbol: RawSymbol;
 	state: SymbolState;
 }) => {
-	const symbolKey = getSymbolKey({ rawSymbol });
-	if (!SYMBOL_INFO_MAP[symbolKey]) {
-		console.log('[getSymbolInfo] Missing symbol info for key:', symbolKey, rawSymbol);
-		return null;
-	}
-	if (!SYMBOL_INFO_MAP[symbolKey][state]) {
-		console.log(
-			'[getSymbolInfo] Missing state info for key:',
-			symbolKey,
-			'state:',
-			state,
-			rawSymbol,
-		);
-		return null;
-	}
-	return SYMBOL_INFO_MAP[symbolKey][state];
+		const symbolKey = getSymbolKey({ rawSymbol });
+		// Fallback for any M or m symbol (e.g., M_TAKEN_15, M_15, etc.)
+		if (!SYMBOL_INFO_MAP[symbolKey]) {
+			if (typeof symbolKey === 'string' && (symbolKey.startsWith('M') || symbolKey.startsWith('m'))) {
+				// Try to fallback to a generic M symbol (e.g., M_10 or M_TAKEN_10)
+				// Prefer M_10 for multipliers, M_TAKEN_10 for taken
+				if (symbolKey.startsWith('M_TAKEN')) {
+					if (SYMBOL_INFO_MAP['M_TAKEN_10']) {
+						return SYMBOL_INFO_MAP['M_TAKEN_10'][state] || null;
+					}
+				} else if (SYMBOL_INFO_MAP['M_10']) {
+					return SYMBOL_INFO_MAP['M_10'][state] || null;
+				}
+			}
+			console.log('[getSymbolInfo] Missing symbol info for key:', symbolKey, rawSymbol);
+			return null;
+		}
+		if (!SYMBOL_INFO_MAP[symbolKey][state]) {
+			console.log(
+				'[getSymbolInfo] Missing state info for key:',
+				symbolKey,
+				'state:',
+				state,
+				rawSymbol,
+			);
+			return null;
+		}
+		return SYMBOL_INFO_MAP[symbolKey][state];
 };
 
 export const getSymbolBackgroundInfo = ({
