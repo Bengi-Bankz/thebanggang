@@ -286,6 +286,11 @@ export default {
 		type: 'sprites',
 		src: new URL('../../assets/sprites/reelsFrame/reels_frame.json', import.meta.url).href,
 	},
+	frames: {
+		type: 'sprites',
+		src: new URL('../../assets/sprites/frames/reelframe.webp.json', import.meta.url).href,
+	},
+
 	reelsFrame2: {
 		type: 'sprite',
 		src: new URL('../../assets/sprites/reelframe2/frame2.webp', import.meta.url).href,
